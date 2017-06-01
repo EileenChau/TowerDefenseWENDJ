@@ -5,9 +5,17 @@ import javax.swing.*;
  */
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 600;
+    public Tile[][] tiles;
 
     public Main(){
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
+        tiles = new Tile[32][32];
+        int i = 0;
+        while(i < 32){
+            int rand = (int) Math.random() * 32;
+            tiles[i][rand] = new RoadTile(i*25, rand*25);
+            i++;
+        }
     }
 
     public static void main(String[] args) {
@@ -24,7 +32,6 @@ public class Main extends JPanel{
         window.add(panel);
         window.setVisible(true);
         window.setResizable(false);
-        System.out.println(" ");;;;
 
     }
 }
