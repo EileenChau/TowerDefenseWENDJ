@@ -6,10 +6,18 @@ import javax.swing.*;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 600;
     public Tile[][] tiles;
+    public Enemy enemy;
+    public World world;
 
     public Main(){
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[32][32];
+        enemy = new Enemy(getWidth()/2, 15, Sprite.SOUTH, world);
+        for(Enemy e: enemy){
+            if(e.intersects(que)){
+
+            }
+        }
     }
 
     public static void main(String[] args) {
