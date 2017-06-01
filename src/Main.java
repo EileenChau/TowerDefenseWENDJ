@@ -5,9 +5,11 @@ import javax.swing.*;
  */
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 600;
+    public Tile[][] tiles;
 
     public Main(){
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
+        tiles = new Tile[32][32];
     }
 
     public static void main(String[] args) {
@@ -24,7 +26,6 @@ public class Main extends JPanel{
         window.add(panel);
         window.setVisible(true);
         window.setResizable(false);
-        System.out.println(" ");;;;
 
     }
 }
