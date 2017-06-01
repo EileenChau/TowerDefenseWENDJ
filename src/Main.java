@@ -10,6 +10,12 @@ public class Main extends JPanel{
     public Main(){
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[32][32];
+        int i = 0;
+        while(i < 32){
+            int rand = (int) Math.random() * 32;
+            tiles[i][rand] = new RoadTile(i*25, rand*25);
+            i++;
+        }
     }
 
     public static void main(String[] args) {
