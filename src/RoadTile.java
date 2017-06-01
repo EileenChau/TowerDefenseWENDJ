@@ -6,6 +6,6 @@ import java.awt.*;
 public class RoadTile extends Tile{
 
     public RoadTile(int x, int y){
-        super(x, y, Color.BLACK);
+        super(x, y, Color.BLACK, 25);
     }
 }

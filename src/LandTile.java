@@ -6,6 +6,6 @@ import java.awt.*;
 public class LandTile extends Tile{
 
     public LandTile(int x, int y){
-        super(x, y, Color.GREEN);
+        super(x, y, Color.GREEN, 25);
     }
 }

@@ -6,12 +6,13 @@ import java.awt.*;
 public class Tile {
 
     private Color color;
-    private int x, y;
+    private int x, y, size;
 
-    public Tile(int xx, int yy, Color c){
+    public Tile(int xx, int yy, Color c, int s){
         x = xx;
         y = yy;
         color = c;
+        size = s;
     }
 
     public int getX() {
@@ -24,5 +25,9 @@ public class Tile {
 
     public Color getColor(){
         return color;
+    }
+
+    public int getSize(){
+        return size;
     }
 }
