@@ -24,6 +24,7 @@ public class Main extends JPanel{
         window.add(panel);
         window.setVisible(true);
         window.setResizable(false);
-        System.out.println();
+        System.out.println("HI");
+
     }
 }
