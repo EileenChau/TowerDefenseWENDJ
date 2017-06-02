@@ -22,6 +22,13 @@ public class Main extends JPanel{
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[32][32];
+        int i = 0;
+        while(i < 32){
+            int rand = (int) Math.random() * 32;
+            tiles[i][rand] = new RoadTile(i*25, rand*25);
+            i++;
+        }
+
 
 
         timer = new Timer(40, new ActionListener() {
@@ -101,19 +108,20 @@ public class Main extends JPanel{
 
 
 
-        if(screen==0){
+        if(screen==0) {
 
-            if(mousex>335&&mousex<435&&mousey>260&&mousey<315){
-                play= Color.WHITE;
+            if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
+                play = Color.WHITE;
+            } else {
+                play = Color.black;
             }
-            else {play=Color.black;}
             g2.setColor(Color.GREEN);
-            g2.fillRect(0,0,getWidth(),getHeight());
-            g2.setFont( new Font("Comic Sans MS", Font.BOLD ,60));
+            g2.fillRect(0, 0, getWidth(), getHeight());
+            g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
             g2.setColor(Color.black);
-            g2.drawString("Tower Defense",getWidth()/3,200);
+            g2.drawString("Tower Defense", getWidth() / 3, 200);
             g2.setColor(play);
-            g2.drawString("Play",getWidth()/3,300);
+            g2.drawString("Play", getWidth() / 3, 300);
         }
     }
 
