@@ -5,7 +5,7 @@ import java.awt.*;
  */
 public class WaterTile extends Tile{
 
-    public WaterTile(int x, int y){
-        super(x, y, Color.BLUE, 25);
+    public WaterTile(int x, int y, int size){
+        super(x, y, Color.BLUE, size);
     }
 }

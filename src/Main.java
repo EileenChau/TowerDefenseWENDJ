@@ -14,6 +14,7 @@ public class Main extends JPanel{
     public Tile[][] tiles;
     private Timer timer;
     private int screen = 0;
+    int size = 50;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -21,15 +22,74 @@ public class Main extends JPanel{
 
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
-        tiles = new Tile[32][32];
-        int rand = (int) Math.random() * 32;
-        tiles[0][rand] = new RoadTile(0, rand*25);
-        int i = 1;
-        while(i < 32){
-            int rand1 = (int) Math.random() * 32;
-            if(tiles[i][rand-1] != null || tiles[i][rand+1] != null || tiles[i-1][rand] != null) {
-                tiles[i][rand] = new RoadTile(i * 25, rand1 * 25);
-                i++;
+        tiles = new Tile[16][16];
+        int r = 7;
+        int c = 0;
+        tiles[r][c] = new RoadTile(c, r*size, size);
+        while(c < tiles.length-1){
+            int dir = (int)(Math.random()*3);
+            if(dir == 0){
+                if(r < tiles.length-1 && tiles[r+1][c] == null) {
+                    tiles[r+1][c] = new RoadTile(c*size, (r+1)*size, size);
+                    r++;
+                }
+            }
+            if(dir == 1){
+                if(r != 0 && tiles[r-1][c] == null) {
+                    tiles[r-1][c] = new RoadTile(c*size, (r-1)*size, size);
+                    r--;
+                }
+            }
+            if(dir == 2){
+                if(c < tiles.length-1) {
+                    c++;
+                    tiles[r][c] = new RoadTile(c*size, r*size, size);
+                    if(c < tiles.length-1) {
+                        c++;
+                        tiles[r][c] = new RoadTile(c * size, r * size, size);
+                    }
+                }
+            }
+        }
+
+        int randWater = (int)(Math.random() * 4);
+        for (int j = 0; j < randWater; j++) {
+            int randR = (int)(Math.random() * tiles.length);
+            int randC = (int)(Math.random() * tiles.length);
+            if(tiles[randR][randC] == null){
+                tiles[randR][randC] = new WaterTile(randC*size, randR*size, size);
+                if(randC != tiles.length && tiles[randR][randC+1] == null) {
+                    tiles[randR][randC+1] = new WaterTile((randC+1)*size, randR*size, size);
+                }
+                if(randC != 0 && tiles[randR][randC-1] == null){
+                    tiles[randR][randC-1] = new WaterTile((randC-1)*size, randR*size, size);
+                }
+                if(randR != tiles.length && tiles[randR+1][randC] == null){
+                    tiles[randR+1][randC] = new WaterTile(randC*size, (randR+1)*size, size);
+                }
+                if(randR != 0 && tiles[randR-1][randC] == null){
+                    tiles[randR-1][randC] = new WaterTile(randC*size, (randR-1)*size, size);
+                }
+                if(randR != tiles.length && randC != tiles.length && tiles[randR+1][randC+1] == null){
+                    tiles[randR+1][randC+1] = new WaterTile((randC+1)*size, (randR+1)*size, size);
+                }
+                if(randR != tiles.length && randC != 0 && tiles[randR+1][randC-1] == null){
+                    tiles[randR+1][randC-1] = new WaterTile((randC-1)*size, (randR+1)*size, size);
+                }
+                if(randR != 0 && randC != 0 && tiles[randR-1][randC-1] == null){
+                    tiles[randR-1][randC-1] = new WaterTile((randC-1)*size, (randR-1)*size, size);
+                }
+                if(randR != 0 && randC != tiles.length && tiles[randR-1][randC+1] == null){
+                    tiles[randR-1][randC+1] = new WaterTile((randC+1)*size, (randR-1)*size, size);
+                }
+            }
+        }
+
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if(tiles[i][j] == null){
+                    tiles[i][j] = new LandTile(j*size, i*size, size);
+                }
             }
         }
 
@@ -109,9 +169,11 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-
-
-
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                tiles[i][j].draw(g2);
+            }
+        }
         if(screen==0) {
 
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -132,7 +194,7 @@ public class Main extends JPanel{
     public static void main(String[] args) {
         JFrame window = new JFrame("Tower Defense");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT + 22); //(x, y, w, h) 22 due to title bar.
+        window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT+22); //(x, y, w, h) 22 due to title bar.
 
         Main panel = new Main();
         panel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
