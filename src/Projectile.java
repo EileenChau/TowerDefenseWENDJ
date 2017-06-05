@@ -6,17 +6,27 @@ import java.util.ArrayList;
 public class Projectile extends Sprite{
     private Sprite target;
     private int x, y;
+    private int damage;
+    private int radius;
 
 
-    public Projectile(int x, int y, int dir, int damage, World world){
-        super(x, y, dir, world);
+    public Projectile(int x, int y, int dir, int damage, int radius){
+        super(x, y, dir);
         this.x = x;
         this.y = y;
+        this.damage = damage;
+        this.radius = radius;
         //setPic("");
         //this.target = target;
 
 
     }
+//    public void setDamage(int ndam){
+//        damage = ndam;
+//    }
+//    public int getDamage(){
+//        return damage;
+//    }
 
     @Override
     public void update(){
@@ -29,7 +39,7 @@ public class Projectile extends Sprite{
         return Math.sqrt((one*one)+(two*two));
     }
 
-    public void getTarget(int radius, ArrayList<Sprite> enemy){
+    public void getTarget(ArrayList<Sprite> enemy){
         //if(enemy is in a certain radius and is closest to the projectile){ set the target to that sprite}
         for (Sprite e: enemy) {
             if(getdistance(e) <= radius){

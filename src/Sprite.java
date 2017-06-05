@@ -31,11 +31,11 @@ public class Sprite {
         nextID++;
     }
 
-    public Sprite(int x, int y, int direction, World world) {
+    public Sprite(int x, int y, int direction) {
         loc = new Point(x, y);
         dir = direction;
         setPic("Boi.png", NORTH);
-        myWorld = world;
+        //myWorld = world;
         speed = 10;
 
         id = nextID;
