@@ -14,6 +14,7 @@ public class Main extends JPanel{
     public Tile[][] tiles;
     private Timer timer;
     private int screen = 0;
+    int size = 50;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -21,15 +22,60 @@ public class Main extends JPanel{
 
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
-        tiles = new Tile[32][32];
-        int rand = (int) Math.random() * 32;
-        tiles[0][rand] = new RoadTile(0, rand*25);
+        tiles = new Tile[16][16];
+        int rand = (int)(Math.random() * tiles.length);
+        tiles[0][rand] = new RoadTile(0, rand*size, size);
         int i = 1;
-        while(i < 32){
-            int rand1 = (int) Math.random() * 32;
-            if(tiles[i][rand-1] != null || tiles[i][rand+1] != null || tiles[i-1][rand] != null) {
-                tiles[i][rand] = new RoadTile(i * 25, rand1 * 25);
+        while(i < tiles.length){
+            if(rand < 8){
                 i++;
+            }
+            int rand1 = (int)(Math.random() * (tiles.length-1)) + 1;
+            if(tiles[i][rand1-1] != null || tiles[i][rand1+1] != null || tiles[i-1][rand1] != null) {
+                tiles[i][rand1] = new RoadTile(i * size, rand1*size, size);
+            }
+        }
+
+        int randWater = (int)(Math.random() * 4);
+        int in = 0;
+        while(in < randWater){
+            int randX = (int)(Math.random() * tiles.length);
+            int randY = (int)(Math.random() * tiles.length);
+            if(tiles[randX][randY] == null){
+                tiles[randX][randY] = new WaterTile(randX*size, randY*size, size);
+            }
+            if(randY != tiles.length && tiles[randX][randY+1] == null) {
+                tiles[randX][randY+1] = new WaterTile(randX*size, (randY+1)*size, size);
+            }
+            if(randY != 0 && tiles[randX][randY-1] == null){
+                tiles[randX][randY-1] = new WaterTile(randX*size, (randY-1)*size, size);
+            }
+            if(randX != tiles.length && tiles[randX+1][randY] == null){
+                tiles[randX+1][randY] = new WaterTile((randX+1)*size, randY*size, size);
+            }
+            if(randX != 0 && tiles[randX-1][randY] == null){
+                tiles[randX-1][randY] = new WaterTile((randX-1)*size, randY*size, size);
+            }
+            if(randX != tiles.length && randY != tiles.length && tiles[randX+1][randY+1] == null){
+                tiles[randX+1][randY+1] = new WaterTile((randX+1)*size, (randY+1)*size, size);
+            }
+            if(randX != tiles.length && randY != 0 && tiles[randX+1][randY-1] == null){
+                tiles[randX+1][randY-1] = new WaterTile((randX+1)*size, (randY-1)*size, size);
+            }
+            if(randX != 0 && randY != 0 && tiles[randX-1][randY-1] == null){
+                tiles[randX-1][randY-1] = new WaterTile((randX-1)*size, (randY-1)*size, size);
+            }
+            if(randX != 0 && randY != tiles.length && tiles[randX-1][randY+1] == null){
+                tiles[randX-1][randY+1] = new WaterTile((randX-1)*size, (randY+1)*size, size);
+            }
+            in++;
+        }
+
+        for (int j = 0; j < tiles.length; j++) {
+            for (int k = 0; k < tiles.length; k++) {
+                if(tiles[j][k] == null){
+                    tiles[j][k] = new LandTile(j*size, k*size, size);
+                }
             }
         }
 
@@ -109,9 +155,11 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-
-
-
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                tiles[i][j].draw(g2);
+            }
+        }
         if(screen==0) {
 
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -132,7 +180,7 @@ public class Main extends JPanel{
     public static void main(String[] args) {
         JFrame window = new JFrame("Tower Defense");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT + 22); //(x, y, w, h) 22 due to title bar.
+        window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT+22); //(x, y, w, h) 22 due to title bar.
 
         Main panel = new Main();
         panel.setSize(FRAMEWIDTH, FRAMEHEIGHT);
