@@ -23,58 +23,71 @@ public class Main extends JPanel{
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
-        int rand = (int)(Math.random() * tiles.length);
-        tiles[0][rand] = new RoadTile(0, rand*size, size);
-        int i = 1;
-        while(i < tiles.length){
-            if(rand < 8){
-                i++;
+        int r = (int)(Math.random() * tiles.length);
+        int c = 0;
+        tiles[r][0] = new RoadTile(0, r*size, size);
+        while(c < tiles.length-1){
+            int dir = (int)(Math.random()*3);
+            System.out.println(dir);
+            if(dir == 0){
+                if(r != tiles.length-1 && tiles[r+1][c] == null) {
+                    tiles[r+1][c] = new RoadTile(c*size, (r+1)*size, size);
+                    r++;
+                }
             }
-            int rand1 = (int)(Math.random() * (tiles.length-1)) + 1;
-            if(tiles[i][rand1-1] != null || tiles[i][rand1+1] != null || tiles[i-1][rand1] != null) {
-                tiles[i][rand1] = new RoadTile(i * size, rand1*size, size);
+            if(dir == 1){
+                if(r != 0 && tiles[r-1][c] == null) {
+                    tiles[r-1][c] = new RoadTile(c*size, (r-1)*size, size);
+                    r--;
+                }
+            }
+            if(dir == 2){
+                if(c != tiles.length-1) {
+                    c++;
+                    tiles[r][c] = new RoadTile(c*size, r*size, size);
+                }
             }
         }
 
-        int randWater = (int)(Math.random() * 4);
-        int in = 0;
-        while(in < randWater){
-            int randX = (int)(Math.random() * tiles.length);
-            int randY = (int)(Math.random() * tiles.length);
-            if(tiles[randX][randY] == null){
-                tiles[randX][randY] = new WaterTile(randX*size, randY*size, size);
-            }
-            if(randY != tiles.length && tiles[randX][randY+1] == null) {
-                tiles[randX][randY+1] = new WaterTile(randX*size, (randY+1)*size, size);
-            }
-            if(randY != 0 && tiles[randX][randY-1] == null){
-                tiles[randX][randY-1] = new WaterTile(randX*size, (randY-1)*size, size);
-            }
-            if(randX != tiles.length && tiles[randX+1][randY] == null){
-                tiles[randX+1][randY] = new WaterTile((randX+1)*size, randY*size, size);
-            }
-            if(randX != 0 && tiles[randX-1][randY] == null){
-                tiles[randX-1][randY] = new WaterTile((randX-1)*size, randY*size, size);
-            }
-            if(randX != tiles.length && randY != tiles.length && tiles[randX+1][randY+1] == null){
-                tiles[randX+1][randY+1] = new WaterTile((randX+1)*size, (randY+1)*size, size);
-            }
-            if(randX != tiles.length && randY != 0 && tiles[randX+1][randY-1] == null){
-                tiles[randX+1][randY-1] = new WaterTile((randX+1)*size, (randY-1)*size, size);
-            }
-            if(randX != 0 && randY != 0 && tiles[randX-1][randY-1] == null){
-                tiles[randX-1][randY-1] = new WaterTile((randX-1)*size, (randY-1)*size, size);
-            }
-            if(randX != 0 && randY != tiles.length && tiles[randX-1][randY+1] == null){
-                tiles[randX-1][randY+1] = new WaterTile((randX-1)*size, (randY+1)*size, size);
-            }
-            in++;
-        }
+//        int randWater = (int)(Math.random() * 4);
+//        int in = 0;
+//        while(in < randWater){
+//            int randR = (int)(Math.random() * tiles.length);
+//            int randC = (int)(Math.random() * tiles.length);
+//            if(tiles[randR][randC] == null){
+//                tiles[randR][randC] = new WaterTile(randR*size, randC*size, size);
+//            }
+//            if(randC != tiles.length && tiles[randR][randC+1] == null) {
+//                tiles[randR][randC+1] = new WaterTile((randC+1)*size, randR*size, size);
+//            }
+//            if(randC != 0 && tiles[randR][randC-1] == null){
+//                tiles[randR][randC-1] = new WaterTile((randC-1)*size, randR*size, size);
+//            }
+//            if(randR != tiles.length && tiles[randR+1][randC] == null){
+//                tiles[randR+1][randC] = new WaterTile(randC*size, (randR+1)*size, size);
+//            }
+//            if(randR != 0 && tiles[randR-1][randC] == null){
+//                tiles[randR-1][randC] = new WaterTile(randC*size, (randC-1)*size, size);
+//            }
+//            if(randR != tiles.length && randC != tiles.length && tiles[randR+1][randC+1] == null){
+//                tiles[randR+1][randC+1] = new WaterTile((randR+1)*size, (randC+1)*size, size);
+//            }
+//            if(randR != tiles.length && randC != 0 && tiles[randR+1][randC-1] == null){
+//                tiles[randR+1][randC-1] = new WaterTile((randC-1)*size, (randR+1)*size, size);
+//            }
+//            if(randR != 0 && randC != 0 && tiles[randR-1][randC-1] == null){
+//                tiles[randR-1][randC-1] = new WaterTile((randR-1)*size, (randC-1)*size, size);
+//            }
+//            if(randR != 0 && randC != tiles.length && tiles[randR-1][randC+1] == null){
+//                tiles[randR-1][randC+1] = new WaterTile((randC+1)*size, (randR-1)*size, size);
+//            }
+//            in++;
+//        }
 
-        for (int j = 0; j < tiles.length; j++) {
-            for (int k = 0; k < tiles.length; k++) {
-                if(tiles[j][k] == null){
-                    tiles[j][k] = new LandTile(j*size, k*size, size);
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if(tiles[i][j] == null){
+                    tiles[i][j] = new LandTile(j*size, i*size, size);
                 }
             }
         }
