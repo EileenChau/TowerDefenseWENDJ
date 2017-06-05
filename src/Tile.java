@@ -15,6 +15,13 @@ public class Tile {
         size = s;
     }
 
+    public void draw(Graphics g){
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(color);
+        g2.fillRect(x, y, size, size);
+
+    }
+
     public int getX() {
         return x;
     }

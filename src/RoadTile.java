@@ -5,7 +5,7 @@ import java.awt.*;
  */
 public class RoadTile extends Tile{
 
-    public RoadTile(int x, int y){
-        super(x, y, Color.BLACK, 25);
+    public RoadTile(int x, int y, int size){
+        super(x, y, Color.BLACK, size);
     }
 }
