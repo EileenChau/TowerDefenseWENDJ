@@ -133,6 +133,14 @@ public class Sprite {
     public int getDir() {
         return dir;
     }
+    public int getDirection(Point from, Point to){
+        double dx = to.x - from.x;
+        double dy = from.y - to.x;
+        int deg = (int)Math.toDegrees(Math.atan(dy/dx));
+        if(to.x < from.x)
+            deg += 180;
+        return deg;
+    }
 
     public BufferedImage getPic() {
         return pic;
@@ -240,5 +248,9 @@ public class Sprite {
      */
     public int getSpeed() {
         return speed;
+    }
+
+    public void remove(){
+
     }
 }
