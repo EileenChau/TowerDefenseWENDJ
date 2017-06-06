@@ -25,72 +25,76 @@ public class Main extends JPanel{
         tiles = new Tile[16][16];
         makeMap();
 
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //System.out.println(e.getX() + " " + e.getY());
+                if(screen==0) {
+                    if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
+                        screen = 1;
+                    }
+                }
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped (KeyEvent e){
+                int code = e.getKeyChar();
+                if (code == 'r') {
+                    makeMap();
+                }
+            }
+
+            @Override
+            public void keyPressed (KeyEvent e){
+
+            }
+
+            @Override
+            public void keyReleased (KeyEvent e){
+
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mousey=e.getY();
+                mousex=e.getX();
+            }
+        });
+
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                addMouseListener(new MouseListener() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        //System.out.println(e.getX() + " " + e.getY());
-                        if(screen==0) {
-                            if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
-                                screen = 1;
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-
-                    }
-
-                });
-
-                KeyListener keyListener = new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-
-                    }
-                };
-                addMouseMotionListener(new MouseMotionListener() {
-                    @Override
-                    public void mouseDragged(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseMoved(MouseEvent e) {
-                        mousey=e.getY();
-                        mousex=e.getX();
-                    }
-                });
-
              repaint();
             }
         });
