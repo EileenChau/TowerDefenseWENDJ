@@ -178,16 +178,16 @@ public class Main extends JPanel{
                 if(randR > 0 && tiles[randR-1][randC] == null){
                     tiles[randR-1][randC] = new WaterTile(randC*size, (randR-1)*size, size);
                 }
-                if(randR < tiles.length-1 && randC != tiles.length && tiles[randR+1][randC+1] == null){
+                if(randR < tiles.length-1 && randC < tiles.length-1 && tiles[randR+1][randC+1] == null){
                     tiles[randR+1][randC+1] = new WaterTile((randC+1)*size, (randR+1)*size, size);
                 }
-                if(randR < tiles.length-1 && randC != 0 && tiles[randR+1][randC-1] == null){
+                if(randR < tiles.length-1 && randC > 0 && tiles[randR+1][randC-1] == null){
                     tiles[randR+1][randC-1] = new WaterTile((randC-1)*size, (randR+1)*size, size);
                 }
-                if(randR > 0 && randC != 0 && tiles[randR-1][randC-1] == null){
+                if(randR > 0 && randC > 0 && tiles[randR-1][randC-1] == null){
                     tiles[randR-1][randC-1] = new WaterTile((randC-1)*size, (randR-1)*size, size);
                 }
-                if(randR > 0 && randC != tiles.length && tiles[randR-1][randC+1] == null){
+                if(randR > 0 && randC < tiles.length-1 && tiles[randR-1][randC+1] == null){
                     tiles[randR-1][randC+1] = new WaterTile((randC+1)*size, (randR-1)*size, size);
                 }
             }
