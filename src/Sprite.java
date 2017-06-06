@@ -31,11 +31,11 @@ public class Sprite {
         nextID++;
     }
 
-    public Sprite(int x, int y, int direction, World world) {
+    public Sprite(int x, int y, int direction) {
         loc = new Point(x, y);
         dir = direction;
         setPic("Boi.png", NORTH);
-        myWorld = world;
+        //myWorld = world;
         speed = 10;
 
         id = nextID;
@@ -132,6 +132,14 @@ public class Sprite {
      */
     public int getDir() {
         return dir;
+    }
+    public int getDirection(Point from, Point to){
+        double dx = to.x - from.x;
+        double dy = from.y - to.x;
+        int deg = (int)Math.toDegrees(Math.atan(dy/dx));
+        if(to.x < from.x)
+            deg += 180;
+        return deg;
     }
 
     public BufferedImage getPic() {
@@ -240,5 +248,9 @@ public class Sprite {
      */
     public int getSpeed() {
         return speed;
+    }
+
+    public void remove(){
+
     }
 }
