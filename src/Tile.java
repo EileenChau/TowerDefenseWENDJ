@@ -4,7 +4,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.HashMap;
 
 /**
  * Created by eileen_chau on 6/1/17.
