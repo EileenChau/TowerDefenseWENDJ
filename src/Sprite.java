@@ -3,6 +3,8 @@
  */
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -49,12 +51,9 @@ public class Sprite {
         double rotationRequired = Math.toRadians(picOrientation - dir);
         double locationX = pic.getWidth() / 2;
         double locationY = pic.getHeight() / 2;
-//        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-//        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-//        g2.rotate(rotationRequired, loc.x+locationX, loc.y+locationX);
-//        g2.drawImage(op.filter(pic, null), loc.x, loc.y, null);
-        g2.drawImage(pic, loc.x, loc.y, null);
-//        g2.rotate(-rotationRequired, loc.x+locationX, loc.y+locationX);
+        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        g2.drawImage(op.filter(pic, null), loc.x, loc.y, null);
     }
 
     /**

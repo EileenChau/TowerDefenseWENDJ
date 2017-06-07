@@ -6,6 +6,7 @@ import java.awt.*;
 public class LandTile extends Tile{
 
     public LandTile(int x, int y, int size){
-        super(x, y, Color.GREEN, size);
+        super(x, y, size, 90);
+        setPic("MarioP.png");
     }
 }
