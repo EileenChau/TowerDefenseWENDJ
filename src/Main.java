@@ -1,8 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -11,28 +14,75 @@ import java.util.ArrayList;
  */
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
+    private BufferedImage[][] pics= new BufferedImage[7][2];
+    private BufferedImage carried;
+    private boolean car;
     public Tile[][] tiles;
     private Timer timer;
-//    private ArrayList<Enemy> enemy;
+    private Tower carT;
+    private ArrayList<Enemy> enemy= new ArrayList<Enemy>();
     private int screen = 0;
     int size = 50;
+    private ArrayList<Tower> towers=  new ArrayList<>();
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
 
+
     public Main() {
+        try {
+            pics[0][0] = ImageIO.read(new File("res/MarioP.png"));
+            pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png"));
+            pics[1][0] =ImageIO.read(new File("res/Pikachu.png"));
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
         makeMap();
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //System.out.println(e.getX() + " " + e.getY());
+                System.out.println(e.getX() + " " + e.getY());
                 if(screen==0) {
                     if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
                         screen = 1;
                     }
                 }
+                if(screen==1){
+                    if(car){
+                        if(mousex>810) {
+                            car = false;
+                        }
+                        else {
+//                            if(carT.check(mousex,mousey,tiles))
+//                            towers.add(carT);
+//                            car=false;
+                        }
+                    }
+                    if(!car) {
+                        if (mousex > 821 && mousex < 898 && mousey > 52 && mousey < 125) {
+                            carried = pics[0][0];
+                            car = true;
+                             carT= new Tower(mousex,mousey,carried,62);
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 52 && mousey < 125) {
+                            carried = pics[0][1];
+                            car = true;
+                             carT= new Tower(mousex,mousey,carried,62);
+                        }
+                        if (mousex > 821 && mousex < 898 && mousey > 140 && mousey < 215) {
+                            carried = pics[1][0];
+                            car = true;
+                             carT= new Tower(mousex,mousey,carried,62);
+                        }
+                    }
+
+                }
+
 
             }
 
@@ -101,13 +151,38 @@ public class Main extends JPanel{
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
-//        for(Enemy e: enemy){
-//            e.draw(g2);
-//        }
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(new Color(172, 110, 17));
+        g2.fillRect(800,0,200,800);
+        g2.setColor(Color.WHITE);
+
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 2; j++) {
+                g2.fillRect(820+(j*90),50+(i*90),75,75);
+            }
+        }
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 2; j++) {
+                g2.drawImage(pics[i][j],820+(j*90),50+(i*90),null);
+            }
+
+        }
+        for (Enemy e : enemy) {
+            e.draw(g2);
+        }
+
+
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
+            }
+        }
+        if(screen==1){
+            if(car){
+                g2.drawImage(carried,mousex-50,mousey-50,null);
+            }
+            for (Tower t: towers){
+                t.draw(g2);
             }
         }
 
@@ -117,8 +192,7 @@ public class Main extends JPanel{
             } else {
                 play = Color.black;
             }
-            g2.setColor(Color.GREEN);
-            g2.fillRect(0, 0, getWidth(), getHeight());
+
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
             g2.setColor(Color.black);
             g2.drawString("Tower Defense", getWidth() / 3, 200);

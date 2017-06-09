@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class SimpleTower extends Tower {
     int x2,y2, radius, range;
     BufferedImage pic;
-    public SimpleTower(int x, int y, Projectile p, BufferedImage image, int r){
-        super(x,y,p,image,r);
+    public SimpleTower(int x, int y, BufferedImage image, int r){
+        super(x,y,image,r);
         x2=x;
         y2=y;
         pic=image;

@@ -11,10 +11,9 @@ public class Tower {
     int x2,y2, radius, range;
     BufferedImage pic;
     Projectile pro;
-    public Tower(int x, int y,Projectile p, BufferedImage image, int r){
+    public Tower(int x, int y, BufferedImage image, int r){
         x2=x;
         y2=y;
-        pro=p;
         pic=image;
         radius=r;
         range=r;
@@ -28,12 +27,23 @@ public class Tower {
     public void draw(Graphics2D g2){
         g2.drawImage(pic,x2,y2,pic.getWidth(),pic.getHeight(),null);
     }
-    public boolean check(int x, int y){
-        if (getdistance(x,y)>radius){
-            return true;
-        }
-            return false;
+    public boolean check(int x, int y,Tile[][]tiles){
+        Tile spot= tiles[x/50][y/50];
+        for (int i = 0; i < 5; i++) {
+            if(i==0){
+                if(spot instanceof WaterTile||spot instanceof RoadTile){
+                    return false;
+                }
+            }
+            else {
+                if (getdistance(x, y) > radius) {
+                    return true;
+                }
+                return false;
+            }
 
+
+        }
 
     }
 
