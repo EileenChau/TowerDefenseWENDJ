@@ -15,7 +15,9 @@ public class Main extends JPanel{
     private Timer timer;
     private ArrayList<Enemy> enemy;
     private int screen = 0;
-    int size = 50;
+    private int size = 50;
+    private int rM;
+    private int cM;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -27,6 +29,8 @@ public class Main extends JPanel{
         makeMap();
         enemy = new ArrayList<>();
         enemy.add(new Enemy(90));
+        rM = 7;
+        cM = 0;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -97,25 +101,23 @@ public class Main extends JPanel{
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int r = 7;
-                int c = 0;
                 Point p = new Point();
                 for (int i = 0; i < enemy.size(); i++) {
-                    if(c < tiles.length-1 && tiles[r][c+1] instanceof RoadTile) {
-                        p.setLocation((c+1)*50, r*50);
+                    if(cM < tiles.length-1 && tiles[rM][cM+1] instanceof RoadTile) {
+                        p.setLocation((cM+1)*50, rM*50);
 
                     }
-                    if(r < tiles.length-1 && tiles[r+1][c] instanceof RoadTile){
-                        p.setLocation(c*50, (r+1)*50);
+                    if(rM < tiles.length-1 && tiles[rM+1][cM] instanceof RoadTile){
+                        p.setLocation(cM*50, (rM+1)*50);
                     }
-                    if(r > 0 && tiles[r-1][c] == null){
-                        p.setLocation(c*50, (r-1)*50);
+                    if(rM > 0 && tiles[rM-1][cM] == null){
+                        p.setLocation(cM*50, (rM-1)*50);
                     }
-                    if(r < tiles.length-1 && c < tiles.length-1 && tiles[r+1][c+1] instanceof RoadTile){
-                        p.setLocation((c+1)*50, (r+1)*50);
+                    if(rM < tiles.length-1 && cM < tiles.length-1 && tiles[rM+1][cM+1] instanceof RoadTile){
+                        p.setLocation((cM+1)*50, (rM+1)*50);
                     }
-                    if(r > 0 && c < tiles.length-1 && tiles[r-1][c+1] instanceof RoadTile){
-                        p.setLocation((c+1)*50, (r-1)*50);
+                    if(rM > 0 && cM < tiles.length-1 && tiles[rM-1][cM+1] instanceof RoadTile){
+                        p.setLocation((cM+1)*50, (rM-1)*50);
                     }
                     enemy.get(i).setLoc(p);
                 }
