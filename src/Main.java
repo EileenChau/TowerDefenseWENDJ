@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private BufferedImage[][] pics= new BufferedImage[7][2];
-
+    private BufferedImage carried;
+    private boolean car;
     public Tile[][] tiles;
     private Timer timer;
     private ArrayList<Enemy> enemy= new ArrayList<Enemy>();
@@ -49,8 +50,17 @@ public class Main extends JPanel{
                     }
                 }
                 if(screen==1){
-                    if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315);
+                    if (mousex > 821 && mousex < 898 && mousey > 52 && mousey < 125){
+                        carried=pics[0][0];
+                        car=true;
+                    }
+                    if (mousex > 910 && mousex < 990 && mousey > 52 && mousey < 125){
+                        carried=pics[0][1];
+                        car=true;
+                    }
+
                 }
+
 
             }
 
@@ -134,6 +144,9 @@ public class Main extends JPanel{
             g2.setColor(new Color(172, 110, 17));
             g2.fillRect(800,0,200,800);
             g2.setColor(Color.WHITE);
+            if(car){
+                g2.drawImage(carried,mousex-50,mousey-50,null);
+            }
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 2; j++) {
                     g2.fillRect(820+(j*90),50+(i*90),75,75);
