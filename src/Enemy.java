@@ -7,10 +7,11 @@ import java.awt.*;
 public class Enemy extends Sprite{
     private Point p;
     private Tile t;
-    public Enemy(int x, int y, int dir, World world){
-        super(x, y, dir, world);
+    public Enemy(int x, int y, int dir){
+        super(x, y, dir);
         setPic("balloon.png", NORTH);
         p = new Point(x, y);
+        setSpeed(5);
     }
 
     public Point getP() {
