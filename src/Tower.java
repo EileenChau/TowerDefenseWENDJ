@@ -8,34 +8,37 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/1/17.
  */
 public class Tower {
-    int x2,y2, radius, range;
+    int x2, y2, radius, range;
     BufferedImage pic;
     Projectile pro;
-    public Tower(int x, int y, BufferedImage image, int r){
-        x2=x;
-        y2=y;
-        pic=image;
-        radius=r;
-        range=r;
+
+    public Tower(int x, int y, BufferedImage image, int r) {
+        x2 = x;
+        y2 = y;
+        pic = image;
+        radius = r;
+        range = r;
 
     }
-    public double getdistance(int otherX,int otherY){
-        double one= Math.abs(otherX-x2);
-        double two=Math.abs(otherY-y2);
-        return Math.sqrt((one*one)+(two*two));
+
+    public double getdistance(int otherX, int otherY) {
+        double one = Math.abs(otherX - x2);
+        double two = Math.abs(otherY - y2);
+        return Math.sqrt((one * one) + (two * two));
     }
-    public void draw(Graphics2D g2){
-        g2.drawImage(pic,x2,y2,pic.getWidth(),pic.getHeight(),null);
+
+    public void draw(Graphics2D g2) {
+        g2.drawImage(pic, x2, y2, pic.getWidth(), pic.getHeight(), null);
     }
-    public boolean check(int x, int y,Tile[][]tiles){
-        Tile spot= tiles[x/50][y/50];
+
+    public boolean check(int x, int y, Tile[][] tiles) {
+        Tile spot = tiles[x / 50][y / 50];
         for (int i = 0; i < 5; i++) {
-            if(i==0){
-                if(spot instanceof WaterTile||spot instanceof RoadTile){
+            if (i == 0) {
+                if (spot instanceof WaterTile || spot instanceof RoadTile) {
                     return false;
                 }
-            }
-            else {
+            } else {
                 if (getdistance(x, y) > radius) {
                     return true;
                 }
@@ -44,8 +47,11 @@ public class Tower {
 
 
         }
+        return true;
 
     }
+
+
 
     public BufferedImage getPic() {
         return pic;
