@@ -20,7 +20,7 @@ public class Tile {
         size = s;
         dir = NORTH;
         picOrientation = pO;
-        setPic("MarioA.png");
+        setPic("Grass.png");
     }
 
 
