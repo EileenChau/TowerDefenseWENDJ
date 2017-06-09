@@ -8,16 +8,29 @@ import java.awt.image.AffineTransformOp;
  */
 public class Enemy extends Sprite{
     private Point p;
-    private Tile t;
-    public Enemy(int x, int y, int dir){
-        super(x, y, dir);
-        setPic("balloon.png", NORTH);
-        p = new Point(x, y);
+    private int health;
+    public Enemy(int dir){
+        super(0, 7*50, dir);
+        setPic("RedShroom.png", NORTH);
+        p = new Point(0, 7*50);
         setSpeed(5);
+        health = 1;
     }
 
     public Point getP() {
         return p;
     }
 
+    public void setHealth(int h){
+        health = h;
+    }
+
+    public void setLoc(Point pp){
+        p = pp;
+    }
+
+    public void draw(Graphics g){
+        Graphics2D g2 = (Graphics2D) g;
+        super.draw(g2);
+    }
 }

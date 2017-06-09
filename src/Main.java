@@ -13,17 +13,20 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     public Tile[][] tiles;
     private Timer timer;
-//    private ArrayList<Enemy> enemy;
+    private ArrayList<Enemy> enemy;
     private int screen = 0;
     int size = 50;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
 
+
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
         makeMap();
+        enemy = new ArrayList<>();
+        enemy.add(new Enemy(90));
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -94,6 +97,28 @@ public class Main extends JPanel{
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                int r = 7;
+                int c = 0;
+                Point p = new Point();
+                for (int i = 0; i < enemy.size(); i++) {
+                    if(c < tiles.length-1 && tiles[r][c+1] instanceof RoadTile) {
+                        p.setLocation((c+1)*50, r*50);
+
+                    }
+                    if(r < tiles.length-1 && tiles[r+1][c] instanceof RoadTile){
+                        p.setLocation(c*50, (r+1)*50);
+                    }
+                    if(r > 0 && tiles[r-1][c] == null){
+                        p.setLocation(c*50, (r-1)*50);
+                    }
+                    if(r < tiles.length-1 && c < tiles.length-1 && tiles[r+1][c+1] instanceof RoadTile){
+                        p.setLocation((c+1)*50, (r+1)*50);
+                    }
+                    if(r > 0 && c < tiles.length-1 && tiles[r-1][c+1] instanceof RoadTile){
+                        p.setLocation((c+1)*50, (r-1)*50);
+                    }
+                    enemy.get(i).setLoc(p);
+                }
              repaint();
             }
         });
@@ -102,9 +127,11 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-//        for(Enemy e: enemy){
-//            e.draw(g2);
-//        }
+        if(enemy.size()>0) {
+            for (Enemy e : enemy) {
+                e.draw(g2);
+            }
+        }
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
