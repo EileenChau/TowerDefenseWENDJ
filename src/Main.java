@@ -1,12 +1,8 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.sql.Blob;
 import java.util.ArrayList;
 
 
@@ -15,11 +11,9 @@ import java.util.ArrayList;
  */
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
-
     public Tile[][] tiles;
-    private BufferedImage sideMenu[][] = new BufferedImage[7][2];
-    BufferedImage pic;
     private Timer timer;
+    private ArrayList<Enemy> enemy;
     private int screen = 0;
     int size = 50;
 
@@ -29,23 +23,8 @@ public class Main extends JPanel{
 
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
-        try {
-            sideMenu[0][0] = ImageIO.read(new File("res/MarioP.png"));
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            sideMenu[0][1] = ImageIO.read(new File("res/Donkey Kong.png"));
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
         tiles = new Tile[16][16];
         makeMap();
-
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -124,31 +103,16 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        if(screen==1){
-            g2.setColor(new Color(172, 96, 29));
-            g2.fillRect(800,0,200,800);
-            g2.setColor(Color.white);
-            for (int i = 0; i < 7; i++) {
-                for (int j = 0; j <2 ; j++) {
-                    g2.fillRect(820+(j*90),50+(i*90),80,80);
-                }
-
-            }
-            for (int i = 0; i < 7; i++) {
-                for (int j = 0; j <2 ; j++) {
-                    g2.drawImage(sideMenu[i][j],820+(j*90),50+(i*90),null);
-                }
-
-            }
-
+        for(Enemy e: enemy){
+            e.draw(g2);
         }
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
             }
         }
-        if(screen==0) {
 
+        if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
                 play = Color.WHITE;
             } else {
@@ -198,7 +162,6 @@ public class Main extends JPanel{
                 }
             }
         }
-
 
         int randWater = (int)(Math.random() * 4);
         for (int j = 0; j < randWater; j++) {
