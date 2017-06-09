@@ -7,6 +7,6 @@ public class RoadTile extends Tile{
 
     public RoadTile(int x, int y, int size){
         super(x, y, size, 90);
-        setPic("FireFl.png");
+        setPic("Path.png");
     }
 }

@@ -7,6 +7,6 @@ public class WaterTile extends Tile{
 
     public WaterTile(int x, int y, int size){
         super(x, y, size, 90);
-        setPic("FireFR.png");
+        setPic("Water.png");
     }
 }

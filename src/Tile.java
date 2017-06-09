@@ -12,7 +12,7 @@ public class Tile {
 
     private int x, y, size, picOrientation, dir;
     private BufferedImage pic;
-    public static final int NORTH = 90;
+    public static final int NORTH = 90, SOUTH = 270, WEST = 180, EAST = 0;
 
     public Tile(int xx, int yy, int s, int pO){
         x = xx;
@@ -20,7 +20,7 @@ public class Tile {
         size = s;
         dir = NORTH;
         picOrientation = pO;
-        setPic("MarioA.png");
+        setPic("Grass.png");
     }
 
 

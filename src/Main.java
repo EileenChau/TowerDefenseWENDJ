@@ -1,11 +1,8 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -14,42 +11,27 @@ import java.util.ArrayList;
  */
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
-    private BufferedImage[][] pics= new BufferedImage[7][2];
-
     public Tile[][] tiles;
     private Timer timer;
-    private ArrayList<Enemy> enemy= new ArrayList<Enemy>();
+//    private ArrayList<Enemy> enemy;
     private int screen = 0;
     int size = 50;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
 
-
     public Main() {
-        try {
-            pics[0][0] = ImageIO.read(new File("res/MarioP.png"));
-            pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png"));
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
         makeMap();
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getX() + " " + e.getY());
+                //System.out.println(e.getX() + " " + e.getY());
                 if(screen==0) {
                     if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
                         screen = 1;
                     }
-                }
-                if(screen==1){
-                    if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315);
                 }
 
             }
@@ -119,33 +101,14 @@ public class Main extends JPanel{
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        for (Enemy e : enemy) {
-            e.draw(g2);
-        }
-
-
+        Graphics2D g2 = (Graphics2D)g;
+//        for(Enemy e: enemy){
+//            e.draw(g2);
+//        }
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
             }
-        }
-        if(screen==1){
-            g2.setColor(new Color(172, 110, 17));
-            g2.fillRect(800,0,200,800);
-            g2.setColor(Color.WHITE);
-            for (int i = 0; i < 7; i++) {
-                for (int j = 0; j < 2; j++) {
-                    g2.fillRect(820+(j*90),50+(i*90),75,75);
-                }
-            }
-            for (int i = 0; i < 7; i++) {
-                for (int j = 0; j < 2; j++) {
-                    g2.drawImage(pics[i][j],820+(j*90),50+(i*90),null);
-                }
-
-            }
-
         }
 
         if(screen==0) {
