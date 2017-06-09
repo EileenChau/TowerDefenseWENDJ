@@ -1,19 +1,24 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
  * Created by samuel_wolff on 6/1/17.
  */
 public class Tower {
-    int x2,y2,speed, radius;
+    int x2,y2, radius, range;
     BufferedImage pic;
-    public Tower(int x, int y,int projectileSpeed, BufferedImage image, int r){
+    Projectile pro;
+    public Tower(int x, int y,Projectile p, BufferedImage image, int r){
         x2=x;
         y2=y;
-        speed=projectileSpeed;
+        pro=p;
         pic=image;
         radius=r;
+        range=r;
+
     }
     public double getdistance(int otherX,int otherY){
         double one= Math.abs(otherX-x2);
@@ -31,7 +36,30 @@ public class Tower {
 
 
     }
+
+    public BufferedImage getPic() {
+        return pic;
+    }
+
+    public void setPic(String fileName) {
+        try {
+            pic = ImageIO.read(new File("res/" + fileName));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Projectile getPro() {
+        return pro;
+    }
+
+    public void setPro(Projectile pro) {
+        this.pro = pro;
+    }
+
     public void Shoot(ArrayList <Projectile> projectiles){
+        projectiles.add(pro);
+
 
     }
 
@@ -43,9 +71,6 @@ public class Tower {
         return y2;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
 
     public int getRadius() {
         return radius;
@@ -59,11 +84,16 @@ public class Tower {
         this.y2 = y2;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
     }
 
     public void setRadius(int radius) {
         this.radius = radius;
     }
 }
+

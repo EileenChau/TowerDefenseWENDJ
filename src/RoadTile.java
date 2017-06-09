@@ -6,6 +6,7 @@ import java.awt.*;
 public class RoadTile extends Tile{
 
     public RoadTile(int x, int y, int size){
-        super(x, y, Color.BLACK, size);
+        super(x, y, size, 90);
+        setPic("FireFl.png");
     }
 }
