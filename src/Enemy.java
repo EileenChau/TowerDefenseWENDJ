@@ -29,8 +29,7 @@ public class Enemy extends Sprite{
         p = pp;
     }
 
-    public void draw(Graphics g){
-        Graphics2D g2 = (Graphics2D) g;
+    public void draw(Graphics2D g2){
         super.draw(g2);
     }
 }

@@ -127,14 +127,15 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        if(enemy.size()>0) {
-            for (Enemy e : enemy) {
-                e.draw(g2);
-            }
-        }
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
+            }
+        }
+
+        if(enemy.size()>0) {
+            for (Enemy e : enemy) {
+                e.draw(g2);
             }
         }
 
