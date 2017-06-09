@@ -13,13 +13,12 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     public Tile[][] tiles;
     private Timer timer;
-    private ArrayList<Enemy> enemy;
+//    private ArrayList<Enemy> enemy;
     private int screen = 0;
     int size = 50;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
-
 
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
@@ -103,9 +102,9 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        for(Enemy e: enemy){
-            e.draw(g2);
-        }
+//        for(Enemy e: enemy){
+//            e.draw(g2);
+//        }
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
