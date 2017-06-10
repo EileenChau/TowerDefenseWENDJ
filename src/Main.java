@@ -41,10 +41,14 @@ public class Main extends JPanel{
             pics[0][0] = ImageIO.read(new File("res/MarioP.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
+            pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
+            pics[2][0] = ImageIO.read(new File("res/Yoshi.png" ));
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }// Pic Maker
         makeMap();
         enemy = new ArrayList<>();
         enemy.add(new Enemy(90));
@@ -57,7 +61,7 @@ public class Main extends JPanel{
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getX() + " " + e.getY());
+//                System.out.println(e.getX() + " " + e.getY());
                 if(screen==0) {
                     if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
                         screen = 1;
@@ -81,7 +85,7 @@ public class Main extends JPanel{
                     if (screen == 1) {
                         if (mousex > 810 && mousex < 890 && mousey > 28 && mousey < 95) {
                             carr=pics[0][0];
-                            carried=new Tower(mousex,mousey,pics[0][0],62);
+                            carried=new SimpleTower(mousex,mousey,pics[0][0],62);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
@@ -94,8 +98,18 @@ public class Main extends JPanel{
                             carried=new Tower(mousex,mousey,pics[1][0],62);
                             car = true;
                         }
+                        if (mousex > 910 && mousex < 990 && mousey > 105 && mousey < 180) {
+                            carr=pics[1][1];
+                            carried=new Squirtle(mousex,mousey,pics[1][1],62);
+                            car = true;
+                        }
+                        if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
+                            carr=pics[2][0];
+                            carried=new Tower(mousex,mousey,pics[2][0],62);
+                            car = true;
+                        }
                     }
-                }
+                }//Side Menu Stuff
 
 
             }
@@ -161,6 +175,27 @@ public class Main extends JPanel{
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                for (Tower t: towers){
+                    if(t instanceof Squirtle){
+                        if(t.Shootable()){
+                            ((Squirtle) t).shoot(enemy);
+                        }
+                        for (WaterBomb w: ((Squirtle) t).pop){
+                            w.update();
+                            for (Enemy e: enemy){
+                                if(e.intersects(w));
+                                e.setHealth(e.getHealth()-100);
+                            }
+
+                        }
+                    }
+                }
+//                for (Enemy e: enemy){
+//                    if(e.getHealth()<1){
+//                        enemy.remove(e);
+//                    }
+//                }
                 count++;
                 if(count > maxCount) {
                     for (int i = 0; i < enemy.size(); i++) {
@@ -190,6 +225,8 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+        //super.paint(g2);
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
@@ -219,6 +256,11 @@ public class Main extends JPanel{
         }
         for (Tower t: towers){
             t.draw(g2);
+            if(t instanceof Squirtle){
+                for(WaterBomb w: ((Squirtle) t).pop){
+                    w.draw(g2);
+                }
+            }
         }
 
 
@@ -234,7 +276,7 @@ public class Main extends JPanel{
             g2.drawString("Tower Defense", getWidth() / 3, 200);
             g2.setColor(play);
             g2.drawString("Play", getWidth() / 3, 300);
-        }
+        }//Main Menu
     }
 
     public void makeMap(){

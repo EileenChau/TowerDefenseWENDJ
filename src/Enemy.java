@@ -14,6 +14,10 @@ public class Enemy extends Sprite{
         health = 1;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public void setHealth(int h){
         health = h;
     }

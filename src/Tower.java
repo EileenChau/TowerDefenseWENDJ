@@ -11,6 +11,8 @@ public class Tower {
     int x2, y2, radius, range;
     BufferedImage pic;
     Projectile pro;
+    int shootnum;
+    int shootCount=1;
 
     public Tower(int x, int y, BufferedImage image, int r) {
         x2 = x;
@@ -26,6 +28,15 @@ public class Tower {
         double two = Math.abs(otherY - y2);
         return Math.sqrt((one * one) + (two * two));
     }
+    public boolean Shootable(){
+        if(shootnum%shootCount==0){
+            return true;
+        }
+        else {
+            shootCount++;
+            return false;
+        }
+    }
 
     public void draw(Graphics2D g2) {
         g2.drawImage(pic, x2, y2, pic.getWidth(), pic.getHeight(), null);
@@ -34,7 +45,7 @@ public class Tower {
     public boolean check(int x, int y, Tile[][] tiles) {
         int sx=x/50;
         int sy=y/50;
-        Tile spot = tiles[(y / 50)][(x / 50)];
+        Tile spot = tiles[((y+31) / 50)][((x+31) / 50)];
         System.out.println(spot);
         System.out.println(sx+" "+sy);
 
@@ -45,8 +56,9 @@ public class Tower {
 
     }
 
+    public void shoot(){
 
-
+    }
     public BufferedImage getPic() {
         return pic;
     }
@@ -68,8 +80,6 @@ public class Tower {
     }
 
     public void Shoot(ArrayList <Projectile> projectiles){
-        projectiles.add(pro);
-
 
     }
 
