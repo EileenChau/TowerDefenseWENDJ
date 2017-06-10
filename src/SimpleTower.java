@@ -18,11 +18,15 @@ public class SimpleTower extends Tower {
         range=r;
         this.setPic("MarioP.png");
         //        this.setPro();
-        this.setRange(100);
+        this.setRange(200);
 
     }
-    public void Shoot(ArrayList<Projectile> bullets){
-        pro.setLoc(new Point(x2,y2));
+    public void Shoot(ArrayList<Projectile> bullets,ArrayList<Enemy> shrooms){
+        ArrayList<Integer> dists= new ArrayList<Integer>();
+        for (int i = 0; i <shrooms.size() ; i++) {
+
+
+        }
         bullets.add(pro);
     }
     public void draw(Graphics2D g2){

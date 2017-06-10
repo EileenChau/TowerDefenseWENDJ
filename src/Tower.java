@@ -32,22 +32,16 @@ public class Tower {
     }
 
     public boolean check(int x, int y, Tile[][] tiles) {
-        Tile spot = tiles[x / 50][y / 50];
-        for (int i = 0; i < 5; i++) {
-            if (i == 0) {
-                if (spot instanceof WaterTile || spot instanceof RoadTile) {
-                    return false;
-                }
-            } else {
-                if (getdistance(x, y) > radius) {
-                    return true;
-                }
-                return false;
-            }
+        int sx=x/50;
+        int sy=y/50;
+        Tile spot = tiles[(y / 50)][(x / 50)];
+        System.out.println(spot);
+        System.out.println(sx+" "+sy);
 
-
+        if (spot instanceof WaterTile || spot instanceof RoadTile) {
+            return false;
         }
-        return true;
+                return true;
 
     }
 
