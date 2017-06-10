@@ -13,17 +13,29 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     public Tile[][] tiles;
     private Timer timer;
-//    private ArrayList<Enemy> enemy;
+    private ArrayList<Enemy> enemy;
     private int screen = 0;
-    int size = 50;
+    private int size = 50;
+    private int rM, cM, count, maxCount;
+    private Point p;
+    private Point lastP;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
+
 
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
         makeMap();
+        enemy = new ArrayList<>();
+        enemy.add(new Enemy(90));
+        rM = 7;
+        cM = 0;
+        count = 1;
+        maxCount = 100;
+        p = new Point(0, 7*50);
+        lastP = new Point(0, 0);
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -65,6 +77,9 @@ public class Main extends JPanel{
                 if (code == 'r') {
                     makeMap();
                 }
+                if (code == 'p') {
+                    timer.stop();
+                }
             }
 
             @Override
@@ -94,6 +109,29 @@ public class Main extends JPanel{
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                count++;
+                if(count > maxCount) {
+                    for (int i = 0; i < enemy.size(); i++) {
+                        if (cM < tiles.length - 1 && tiles[rM][cM + 1] instanceof RoadTile && p != lastP) {
+                            lastP.setLocation(cM*50, rM*50);
+                            p.setLocation((cM+1)*50, rM*50);
+                            cM++;
+                        }
+                        else if (rM < tiles.length - 1 && tiles[rM + 1][cM] instanceof RoadTile && p != lastP) {
+                            lastP.setLocation(cM*50, rM*50);
+
+                            p.setLocation(cM*50, (rM+1) * 50);
+                            rM++;
+                        }
+                        else if (rM > 0 && tiles[rM - 1][cM] instanceof RoadTile && p != lastP) {
+                            lastP.setLocation(cM*50, rM*50);
+                            p.setLocation(cM*50, (rM-1)*50);
+                            rM--;
+                        }
+                        System.out.println(rM + " " + cM);
+                        enemy.get(i).setLoc(p);
+                    }
+                }
              repaint();
             }
         });
@@ -102,12 +140,15 @@ public class Main extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-//        for(Enemy e: enemy){
-//            e.draw(g2);
-//        }
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
                 tiles[i][j].draw(g2);
+            }
+        }
+
+        if(enemy.size()>0) {
+            for (Enemy e : enemy) {
+                e.draw(g2);
             }
         }
 
