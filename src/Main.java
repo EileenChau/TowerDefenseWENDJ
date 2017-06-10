@@ -128,7 +128,6 @@ public class Main extends JPanel{
                             p.setLocation(cM*50, (rM-1)*50);
                             rM--;
                         }
-                        System.out.println(rM + " " + cM);
                         enemy.get(i).setLoc(p);
                     }
                 }
