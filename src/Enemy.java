@@ -11,7 +11,6 @@ public class Enemy extends Sprite{
     public Enemy(int dir){
         super(0, 7*50, dir);
         setPic("RedShroom.png", NORTH);
-        setSpeed(5);
         health = 1;
     }
 

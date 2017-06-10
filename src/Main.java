@@ -16,9 +16,8 @@ public class Main extends JPanel{
     private ArrayList<Enemy> enemy;
     private int screen = 0;
     private int size = 50;
-    private int rM, cM, count, maxCount;
+    private int rM, cM, lastR, count, maxCount;
     private Point p;
-    private Point lastP;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -34,8 +33,8 @@ public class Main extends JPanel{
         cM = 0;
         count = 1;
         maxCount = 100;
-        p = new Point(0, 7*50);
-        lastP = new Point(0, 0);
+        p = new Point(0, 0);
+        lastR = 0;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -112,19 +111,18 @@ public class Main extends JPanel{
                 count++;
                 if(count > maxCount) {
                     for (int i = 0; i < enemy.size(); i++) {
-                        if (cM < tiles.length - 1 && tiles[rM][cM + 1] instanceof RoadTile && p != lastP) {
-                            lastP.setLocation(cM*50, rM*50);
+                        if (cM < tiles.length - 1 && tiles[rM][cM + 1] instanceof RoadTile) {
+                            lastR = rM;
                             p.setLocation((cM+1)*50, rM*50);
                             cM++;
                         }
-                        else if (rM < tiles.length - 1 && tiles[rM + 1][cM] instanceof RoadTile && p != lastP) {
-                            lastP.setLocation(cM*50, rM*50);
-
+                        else if (rM < tiles.length - 1 && tiles[rM + 1][cM] instanceof RoadTile && rM+1 != lastR) {
+                            lastR = rM;
                             p.setLocation(cM*50, (rM+1) * 50);
                             rM++;
                         }
-                        else if (rM > 0 && tiles[rM - 1][cM] instanceof RoadTile && p != lastP) {
-                            lastP.setLocation(cM*50, rM*50);
+                        else if (rM > 0 && tiles[rM - 1][cM] instanceof RoadTile && rM-1 != lastR) {
+                            lastR = rM;
                             p.setLocation(cM*50, (rM-1)*50);
                             rM--;
                         }
