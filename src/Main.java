@@ -190,7 +190,7 @@ public class Main extends JPanel{
 //                }
                 count++;
                 if(count > maxCount) {
-                    enemy.add(new Enemy(90, tiles));
+                    enemy.add(new Enemy(Sprite.EAST, tiles));
                     count = 0;
                 }
                 for (int i = 0; i < enemy.size(); i++) {
