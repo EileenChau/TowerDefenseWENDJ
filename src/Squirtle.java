@@ -11,6 +11,7 @@ public class Squirtle extends Tower {
     ArrayList<WaterBomb> pop=new ArrayList<WaterBomb>();
     BufferedImage wat;
     int shootNum;
+
     public Squirtle(int x, int y, BufferedImage image, int r){
         super(x,y,image,r);
         x2=x;
@@ -18,7 +19,7 @@ public class Squirtle extends Tower {
         pic=image;
         radius=r;
         range=r;
-        shootnum=500;
+        this.setShootnum(0);
         //this.setPic("MarioP.png");
         //        this.setPro();
         this.setRange(300);
@@ -59,6 +60,7 @@ public class Squirtle extends Tower {
                 if(dists[i]<range){
                     least =dists[i];
                     index=i;
+                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -71,7 +73,8 @@ public class Squirtle extends Tower {
         if(least!=-1){
             en=enemies.get(index);
             WaterBomb p = new WaterBomb(x2,y2,0,100,wat, en);
-            p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
+            //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
+            System.out.println(least);
             pr.add(p);
         }
 

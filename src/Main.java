@@ -37,7 +37,7 @@ public class Main extends JPanel{
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
         try {
-            pics[0][0] = ImageIO.read(new File("res/MarioP.png" ));
+            pics[0][0] = ImageIO.read(new File("res/Mario.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
             pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
@@ -174,17 +174,21 @@ public class Main extends JPanel{
                         }
                     }
                 }
-                copy=pro;
                         for (Projectile p: pro){
-
                             for (Enemy e: enemy){
                                 if(e.intersects(p));
                                 e.setHealth(e.getHealth()-100);
-                                //copy.remove(p);
                             }
-
                         }
-                        pro=copy;
+                for (int i = 0; i < pro.size(); i++) {
+                    for (int j = 0; j <enemy.size() ; j++) {
+                        if(pro.get(i).intersects(enemy.get(j))){
+                            pro.remove(i);
+                        }
+
+                    }
+
+                }
 
 
 //                for (Enemy e: enemy){
