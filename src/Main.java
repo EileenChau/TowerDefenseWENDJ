@@ -28,6 +28,8 @@ public class Main extends JPanel{
     private int size = 50;
     private int count, maxCount;
     private int money, health;
+    private boolean enemyDead;
+    private int intersectE, intersectP;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -56,6 +58,7 @@ public class Main extends JPanel{
         maxCount = 100;
         money = 200;
         health = 10;
+        enemyDead = false;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -206,21 +209,21 @@ public class Main extends JPanel{
                         }
                     }
                 }
-                        for (Projectile p: pro){
-                            for (Enemy e: enemy){
-                                if(e.intersects(p));
-                                e.setHealth(e.getHealth()-100);
-                            }
-                        }
-                for (int i = 0; i < pro.size(); i++) {
-                    for (int j = 0; j <enemy.size() ; j++) {
-                        if(pro.get(i).intersects(enemy.get(j))){
-                            pro.remove(i);
-                        }
-
-                    }
-
-                }
+//                for (Projectile p: pro){
+//                    for (Enemy e: enemy){
+//                        if(e.intersects(p));
+//                        e.setHealth(e.getHealth()-100);
+//                    }
+//                }
+//                for (int i = 0; i < pro.size(); i++) {
+//                    for (int j = 0; j <enemy.size() ; j++) {
+//                        if(pro.get(i).intersects(enemy.get(j))){
+//                            pro.remove(i);
+//                        }
+//
+//                    }
+//
+//                }
 
 
 //                for (Enemy e: enemy){
@@ -239,13 +242,23 @@ public class Main extends JPanel{
                     }
                     count = 0;
                 }
-                for (int i = 0; i < enemy.size(); i++) {
-                    enemy.get(i).update();
-                    if(enemy.get(i).getLoc().x >= 1000){
-                        health -= enemy.get(i).getHealth();
-                        enemy.remove(i);
-                        i--;
+                for (int e = 0; e < enemy.size(); e++) {
+                    enemy.get(e).update();
+                    for (int p = 0; p < pro.size(); p++) {
+                        if (pro.get(p).intersects(enemy.get(e))) {
+                            enemyDead = true;
+                            intersectE = e;
+                            intersectP = p;
+                        }
                     }
+                }
+                if(enemyDead){
+                    enemy.get(intersectE).setHealth(enemy.get(intersectE).getHealth()-1);
+                    if(enemy.get(intersectE).getHealth() <= 0){
+                        enemy.remove(intersectE);
+                    }
+                    pro.remove(intersectP);
+                    enemyDead = false;
                 }
 
              repaint();

@@ -20,10 +20,6 @@ public class Enemy extends Sprite{
         health = 1;
     }
 
-    public int getHealth() {
-        return health;
-    }
-
     public void update(){
         super.update();
         if (cM < array.length - 1 && array[rM][cM+1] instanceof RoadTile) {
@@ -46,12 +42,16 @@ public class Enemy extends Sprite{
         }
     }
 
-    public void setHealth(int h){
-        health = h;
-    }
-
     public void draw(Graphics2D g2){
         g2.drawImage(this.getPic(), this.getLoc().x, this.getLoc().y, null);
 
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int h){
+        health = h;
     }
 }
