@@ -263,7 +263,7 @@ public class Main extends JPanel{
             t.draw(g2);
         }
 
-        if(health == 0){
+        if(health <= 0){
             timer.stop();
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
             g2.setColor(Color.black);
