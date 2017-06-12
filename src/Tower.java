@@ -23,6 +23,10 @@ public class Tower {
 
     }
 
+    public void setShootnum(int shootnum) {
+        this.shootnum = shootnum;
+    }
+
     public double getdistance(int otherX, int otherY) {
         double one = Math.abs(otherX - x2);
         double two = Math.abs(otherY - y2);
@@ -30,6 +34,7 @@ public class Tower {
     }
     public boolean Shootable(){
         if(shootnum%shootCount==0){
+            shootCount++;
             return true;
         }
         else {
@@ -46,8 +51,6 @@ public class Tower {
         int sx=x/50;
         int sy=y/50;
         Tile spot = tiles[((y+31) / 50)][((x+31) / 50)];
-        System.out.println(spot);
-        System.out.println(sx+" "+sy);
 
         if (spot instanceof WaterTile || spot instanceof RoadTile) {
             return false;

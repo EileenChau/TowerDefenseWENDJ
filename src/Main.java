@@ -175,17 +175,21 @@ public class Main extends JPanel{
                         }
                     }
                 }
-                copy=pro;
                         for (Projectile p: pro){
-
                             for (Enemy e: enemy){
                                 if(e.intersects(p));
                                 e.setHealth(e.getHealth()-100);
-                                //copy.remove(p);
                             }
-
                         }
-                        pro=copy;
+                for (int i = 0; i < pro.size(); i++) {
+                    for (int j = 0; j <enemy.size() ; j++) {
+                        if(pro.get(i).intersects(enemy.get(j))){
+                            pro.remove(i);
+                        }
+
+                    }
+
+                }
 
 
 //                for (Enemy e: enemy){
