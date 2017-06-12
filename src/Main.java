@@ -37,7 +37,7 @@ public class Main extends JPanel{
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
         try {
-            pics[0][0] = ImageIO.read(new File("res/MarioP.png" ));
+            pics[0][0] = ImageIO.read(new File("res/Mario.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
             pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
@@ -49,6 +49,7 @@ public class Main extends JPanel{
         enemy = new ArrayList<>();
         count = 1;
         maxCount = 100;
+        money = 200;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -194,7 +195,13 @@ public class Main extends JPanel{
 //                }
                 count++;
                 if(count > maxCount) {
-                    enemy.add(new Enemy(Sprite.EAST, tiles));
+                    int rand = (int)(Math.random()*2);
+                    if(rand == 0) {
+                        enemy.add(new Enemy(tiles));
+                    }
+                    else {
+                        enemy.add(new BlueShroom(tiles));
+                    }
                     count = 0;
                 }
                 for (int i = 0; i < enemy.size(); i++) {

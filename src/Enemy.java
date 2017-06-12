@@ -11,8 +11,8 @@ public class Enemy extends Sprite{
     private Tile[][] array;
     private int rM, cM;
 
-    public Enemy(int dir, Tile[][] arr){
-        super(0, 7*50, dir);
+    public Enemy(Tile[][] arr){
+        super(0, 7*50, Sprite.EAST);
         array = arr;
         rM = 7;
         cM = 0;

@@ -16,7 +16,7 @@ public class SimpleTower extends Tower {
         pic=image;
         radius=r;
         range=r;
-        this.setPic("MarioP.png");
+        this.setPic("Mario.png");
         //        this.setPro();
         this.setRange(200);
 
