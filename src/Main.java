@@ -29,6 +29,7 @@ public class Main extends JPanel{
     private int count, maxCount;
     private int money;
 
+
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
 
@@ -42,6 +43,7 @@ public class Main extends JPanel{
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
             pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
             pics[2][0] = ImageIO.read(new File("res/Yoshi.png" ));
+            pics[2][1] = ImageIO.read(new File("res/Banana Peel.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
@@ -97,6 +99,11 @@ public class Main extends JPanel{
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
                             carried=new Tower(mousex,mousey,pics[2][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
+                            carr=pics[2][1];
+                            carried=new Tower(mousex,mousey,pics[2][1],62);
                             car = true;
                         }
                     }

@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.image.*;
 import java.util.ArrayList;
 
@@ -46,6 +47,7 @@ public class Projectile extends Sprite{
         return Math.sqrt((one*one)+(two*two));
     }
 
+
     public void getTarget(ArrayList<Sprite> enemy){
         //if(enemy is in a certain radius and is closest to the projectile){ set the target to that sprite}
         for (Sprite e: enemy) {
@@ -55,6 +57,11 @@ public class Projectile extends Sprite{
                 this.setDir(dir2);
             }
         }
+    }
+
+    public void draw(Graphics2D g2){
+        g2.drawImage(pic, x, y, pic.getWidth(), pic.getHeight(), null);
+
     }
 
 //    public boolean hit(Sprite other){

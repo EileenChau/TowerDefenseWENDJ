@@ -61,7 +61,7 @@ public class SimpleTower extends Tower {
         }
 
     }
-    }
+
     public void draw(Graphics2D g2){
         g2.drawImage(pic,x2,y2,pic.getWidth(),pic.getHeight(),null);
     }
