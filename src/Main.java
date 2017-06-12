@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
+    private ArrayList<Projectile> pro= new ArrayList<>();
+    private ArrayList<Projectile> copy= new ArrayList<>();
     private BufferedImage[][] pics = new BufferedImage[7][2];
     private Timer timer;
     private ArrayList<Enemy> enemy;
@@ -40,9 +42,6 @@ public class Main extends JPanel{
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
             pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
             pics[2][0] = ImageIO.read(new File("res/Yoshi.png" ));
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
@@ -168,21 +167,26 @@ public class Main extends JPanel{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                for (Tower t: towers){
-                    if(t instanceof Squirtle){
-                        if(t.Shootable()){
-                            ((Squirtle) t).shoot(enemy);
-                        }
-                        for (WaterBomb w: ((Squirtle) t).pop){
-                            w.update();
-                            for (Enemy e: enemy){
-                                if(e.intersects(w));
-                                e.setHealth(e.getHealth()-100);
-                            }
-
+                for (Tower t: towers) {
+                    if (t instanceof Squirtle) {
+                        if (t.Shootable()) {
+                            ((Squirtle) t).shoot(enemy, pro);
                         }
                     }
                 }
+                copy=pro;
+                        for (Projectile p: pro){
+
+                            for (Enemy e: enemy){
+                                if(e.intersects(p));
+                                e.setHealth(e.getHealth()-100);
+                                //copy.remove(p);
+                            }
+
+                        }
+                        pro=copy;
+
+
 //                for (Enemy e: enemy){
 //                    if(e.getHealth()<1){
 //                        enemy.remove(e);
@@ -234,13 +238,12 @@ public class Main extends JPanel{
         if(car){
             g2.drawImage(carr,mousex-20,mousey-20,null);
         }
+        for(Projectile p: pro){
+            p.draw(g2);
+            p.update();
+        }
         for (Tower t: towers){
             t.draw(g2);
-            if(t instanceof Squirtle){
-                for(WaterBomb w: ((Squirtle) t).pop){
-                    w.draw(g2);
-                }
-            }
         }
 
 
@@ -334,12 +337,7 @@ public class Main extends JPanel{
                 }
             }
         }
-        for (int i = 0; i <tiles.length ; i++) {
-            for (int j = 0; j <tiles[i].length ; j++) {
-                System.out.println(tiles[i][j]);
-            }
 
-        }
     }
 
     public static void main(String[] args) {

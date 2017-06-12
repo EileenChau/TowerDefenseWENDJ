@@ -14,7 +14,7 @@ public class WaterBomb extends Projectile {
         this.x = x;
         this.y = y;
         pic=pi;
-        this.setSpeed(20);
+        this.setSpeed(30);
         this.damage = 5;
         this.setPic("WaterBlast.png",0);
     }
