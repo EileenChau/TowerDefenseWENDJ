@@ -42,6 +42,11 @@ public class Main extends JPanel{
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
             pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
             pics[2][0] = ImageIO.read(new File("res/Yoshi.png" ));
+            pics[2][1] = ImageIO.read(new File("res/Link.png" ));
+            pics[3][0] = ImageIO.read(new File("res/Lucario.png" ));
+            pics[3][1] = ImageIO.read(new File("res/Kirby.png" ));
+            pics[4][0] = ImageIO.read(new File("res/Road Spikes.png" ));
+            pics[4][1] = ImageIO.read(new File("res/Banana Peel.png" ));
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
@@ -99,6 +104,31 @@ public class Main extends JPanel{
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
                             carried=new Tower(mousex,mousey,pics[2][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
+                            carr=pics[2][1];
+                            carried=new Tower(mousex,mousey,pics[2][1],62);
+                            car = true;
+                        }
+                        if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
+                            carr=pics[3][0];
+                            carried=new Tower(mousex,mousey,pics[3][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
+                            carr=pics[3][1];
+                            carried=new Tower(mousex,mousey,pics[3][1],62);
+                            car = true;
+                        }
+                        if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
+                            carr=pics[4][0];
+                            carried=new Tower(mousex,mousey,pics[4][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
+                            carr=pics[4][1];
+                            carried=new Tower(mousex,mousey,pics[4][1],62);
                             car = true;
                         }
                     }
