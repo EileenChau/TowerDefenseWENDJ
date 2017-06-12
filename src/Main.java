@@ -24,11 +24,9 @@ public class Main extends JPanel{
     private Tower carried;
     private BufferedImage carr;
     private ArrayList<Tower> towers= new ArrayList<>();
-//    private ArrayList<Enemy> enemy;
     private int screen = 0;
     private int size = 50;
-    private int rM, cM, lastR, count, maxCount;
-    private Point p;
+    private int count, maxCount;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -51,13 +49,8 @@ public class Main extends JPanel{
         }// Pic Maker
         makeMap();
         enemy = new ArrayList<>();
-        enemy.add(new Enemy(90));
-        rM = 7;
-        cM = 0;
         count = 1;
         maxCount = 100;
-        p = new Point(0, 0);
-        lastR = 0;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -198,25 +191,13 @@ public class Main extends JPanel{
 //                }
                 count++;
                 if(count > maxCount) {
-                    for (int i = 0; i < enemy.size(); i++) {
-                        if (cM < tiles.length - 1 && tiles[rM][cM + 1] instanceof RoadTile) {
-                            lastR = rM;
-                            p.setLocation((cM+1)*50, rM*50);
-                            cM++;
-                        }
-                        else if (rM < tiles.length - 1 && tiles[rM + 1][cM] instanceof RoadTile && rM+1 != lastR) {
-                            lastR = rM;
-                            p.setLocation(cM*50, (rM+1) * 50);
-                            rM++;
-                        }
-                        else if (rM > 0 && tiles[rM - 1][cM] instanceof RoadTile && rM-1 != lastR) {
-                            lastR = rM;
-                            p.setLocation(cM*50, (rM-1)*50);
-                            rM--;
-                        }
-                        enemy.get(i).setLoc(p);
-                    }
+                    enemy.add(new Enemy(90, tiles));
+                    count = 0;
                 }
+                for (int i = 0; i < enemy.size(); i++) {
+                    enemy.get(i).update();
+                }
+
              repaint();
             }
         });
