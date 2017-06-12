@@ -10,14 +10,13 @@ import java.io.File;
  */
 public class Tile {
 
-    private int x, y, size, picOrientation, dir;
+    private int x, y, picOrientation, dir;
     private BufferedImage pic;
     public static final int NORTH = 90, SOUTH = 270, WEST = 180, EAST = 0;
 
-    public Tile(int xx, int yy, int s, int pO){
+    public Tile(int xx, int yy, int pO){
         x = xx;
         y = yy;
-        size = s;
         dir = NORTH;
         picOrientation = pO;
         setPic("Grass.png");
@@ -48,9 +47,5 @@ public class Tile {
 
     public int getY() {
         return y;
-    }
-
-    public int getSize(){
-        return size;
     }
 }

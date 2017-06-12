@@ -5,8 +5,8 @@ import java.awt.*;
  */
 public class LandTile extends Tile{
 
-    public LandTile(int x, int y, int size){
-        super(x, y, size, 90);
+    public LandTile(int x, int y){
+        super(x, y, 90);
         int rand = (int) (Math.random() * 2);
         if(rand == 0) {
             setPic("Grass.png");
