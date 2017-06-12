@@ -212,9 +212,9 @@ public class Main extends JPanel{
                 for (int i = 0; i < enemy.size(); i++) {
                     enemy.get(i).update();
                     if(enemy.get(i).getLoc().x >= 1000){
+                        health -= enemy.get(i).getHealth();
                         enemy.remove(i);
                         i--;
-                        health--;
                     }
                 }
 
