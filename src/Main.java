@@ -27,7 +27,7 @@ public class Main extends JPanel{
     private int screen = 0;
     private int size = 50;
     private int count, maxCount;
-    private int money;
+    private int money, health;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -50,6 +50,7 @@ public class Main extends JPanel{
         count = 1;
         maxCount = 100;
         money = 200;
+        health = 10;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -210,6 +211,11 @@ public class Main extends JPanel{
                 }
                 for (int i = 0; i < enemy.size(); i++) {
                     enemy.get(i).update();
+                    if(enemy.get(i).getLoc().x >= 1000){
+                        enemy.remove(i);
+                        i--;
+                        health--;
+                    }
                 }
 
              repaint();
@@ -257,6 +263,12 @@ public class Main extends JPanel{
             t.draw(g2);
         }
 
+        if(health == 0){
+            timer.stop();
+            g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
+            g2.setColor(Color.black);
+            g2.drawString("Game Over", getWidth() / 3, 200);
+        }
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
