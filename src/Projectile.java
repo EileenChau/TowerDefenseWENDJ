@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.image.*;
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ public class Projectile extends Sprite{
     private int damage;
     private int radius;
     private Enemy en;
+    private World w= new World(1000,800);
     private BufferedImage pic;
 
 
@@ -35,14 +37,14 @@ public class Projectile extends Sprite{
 
     @Override
     public void update(){
-       int dir= this.getDirection(this.getLoc(),en.getLoc());
+       int dir= w.getDirection(this.getLoc(),new Point(en.getLoc().x+15,en.getLoc().y-15));
         this.setDir(dir);
         super.update();
 
     }
     public double getdistance(Sprite other){
-        double one= Math.abs(other.getLoc().getX()-x);
-        double two=Math.abs(other.getLoc().getY()-y);
+        double one= Math.abs(other.getLoc().getX()-getLoc().x);
+        double two=Math.abs(other.getLoc().getY()-getLoc().y);
         return Math.sqrt((one*one)+(two*two));
     }
 

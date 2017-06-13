@@ -22,7 +22,7 @@ public class Squirtle extends Tower {
         this.setShootnum(0);
         //this.setPic("MarioP.png");
         //        this.setPro();
-        this.setRange(300);
+        this.setRange(200);
         try {
             wat=ImageIO.read(new File("res/Waterblast.png" ));
         } catch (Exception e) {
@@ -50,31 +50,25 @@ public class Squirtle extends Tower {
         double[]dists= new double[enemies.size()];
         int count=0;
         int index=-1;
-        double least=-1;
+        double least=1000;
         for(Enemy e: enemies){
             dists[count]=this.getdistance(e.getLoc().x,e.getLoc().y);
             count++;
         }
         for (int i = 0; i <dists.length ; i++) {
-            if (i==0){
                 if(dists[i]<range){
-                    least =dists[i];
-                    index=i;
-                    System.out.println("ye");
-                }
-            }else {
-                if(dists[i]<least){
-                    least=dists[i];
-                    index=i;
+                    if(dists[i]<least) {
+                        least = dists[i];
+                        index = i;
+                    }
                 }
 
-            }
+
         }
-        if(least!=-1){
+        if(least!=1000){
             en=enemies.get(index);
             WaterBomb p = new WaterBomb(x2,y2,0,100,wat, en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-            System.out.println(least);
             pr.add(p);
         }
 
