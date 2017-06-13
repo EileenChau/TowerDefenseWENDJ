@@ -54,4 +54,8 @@ public class Enemy extends Sprite{
     public void setHealth(int h){
         health = h;
     }
+
+    public void moveBack(int tile){
+
+    }
 }
