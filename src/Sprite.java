@@ -25,7 +25,7 @@ public class Sprite {
     public Sprite(World world) {
         loc = new Point(0, 0);
         dir = EAST;
-        setPic("MarioA.png", NORTH);
+        setPic("Mario.png", NORTH);
         myWorld = world;
         speed = 5;
 

@@ -27,7 +27,7 @@ public class Main extends JPanel{
     private int screen = 0;
     private int size = 50;
     private int count, maxCount;
-    private int money;
+    private int money, health;
 
 
     private int mousex,mousey;
@@ -51,6 +51,8 @@ public class Main extends JPanel{
         enemy = new ArrayList<>();
         count = 1;
         maxCount = 100;
+        money = 200;
+        health = 10;
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -205,11 +207,22 @@ public class Main extends JPanel{
 //                }
                 count++;
                 if(count > maxCount) {
-                    enemy.add(new Enemy(Sprite.EAST, tiles));
+                    int rand = (int)(Math.random()*2);
+                    if(rand == 0) {
+                        enemy.add(new Enemy(tiles));
+                    }
+                    else {
+                        enemy.add(new BlueShroom(tiles));
+                    }
                     count = 0;
                 }
                 for (int i = 0; i < enemy.size(); i++) {
                     enemy.get(i).update();
+                    if(enemy.get(i).getLoc().x >= 1000){
+                        health -= enemy.get(i).getHealth();
+                        enemy.remove(i);
+                        i--;
+                    }
                 }
 
              repaint();
@@ -257,6 +270,12 @@ public class Main extends JPanel{
             t.draw(g2);
         }
 
+        if(health == 0){
+            timer.stop();
+            g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
+            g2.setColor(Color.black);
+            g2.drawString("Game Over", getWidth() / 3, 200);
+        }
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
