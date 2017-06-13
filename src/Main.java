@@ -15,20 +15,21 @@ import java.util.ArrayList;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
-    private ArrayList<Projectile> pro= new ArrayList<>();
-    private ArrayList<Projectile> copy= new ArrayList<>();
+    private ArrayList<Projectile> pro;
+    private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
     private Timer timer;
     private ArrayList<Enemy> enemy;
     private boolean car;
     private Tower carried;
     private BufferedImage carr;
-    private ArrayList<Tower> towers= new ArrayList<>();
+    private ArrayList<Tower> towers;
     private int screen = 0;
-    private int size = 50;
+    private int size;
     private int count, maxCount;
     private int money, health;
-
+    private boolean enemyDead;
+    private int intersectE, intersectP;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -37,22 +38,34 @@ public class Main extends JPanel{
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
+        enemy = new ArrayList<>();
+        pro= new ArrayList<>();
+        copy= new ArrayList<>();
+        towers= new ArrayList<>();
+        count = 1;
+        maxCount = 20;
+        money = 200;
+        health = 10;
+        enemyDead = false;
+        size = 50;
         try {
             pics[0][0] = ImageIO.read(new File("res/Mario.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
             pics[1][0] = ImageIO.read(new File("res/Pikachu.png" ));
             pics[1][1] = ImageIO.read(new File("res/Squirtle.png" ));
             pics[2][0] = ImageIO.read(new File("res/Yoshi.png" ));
-            pics[2][1] = ImageIO.read(new File("res/Banana Peel.png"));
+            pics[2][1] = ImageIO.read(new File("res/Link.png" ));
+            pics[3][0] = ImageIO.read(new File("res/Lucario.png" ));
+            pics[3][1] = ImageIO.read(new File("res/Kirby.png" ));
+            pics[4][0] = ImageIO.read(new File("res/Road Spikes.png" ));
+            pics[4][1] = ImageIO.read(new File("res/Banana Peel.png" ));
+            pics[5][0] = ImageIO.read(new File("res/Samus.png" ));
+            pics[5][1] = ImageIO.read(new File("res/Pit.png" ));
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
         makeMap();
-        enemy = new ArrayList<>();
-        count = 1;
-        maxCount = 100;
-        money = 200;
-        health = 10;
+
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -108,6 +121,36 @@ public class Main extends JPanel{
                             carried=new Tower(mousex,mousey,pics[2][1],62);
                             car = true;
                         }
+                        if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
+                            carr=pics[3][0];
+                            carried=new Tower(mousex,mousey,pics[3][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
+                            carr=pics[3][1];
+                            carried=new Tower(mousex,mousey,pics[3][1],62);
+                            car = true;
+                        }
+                        if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
+                            carr=pics[4][0];
+                            carried=new Tower(mousex,mousey,pics[4][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
+                            carr=pics[4][1];
+                            carried=new Tower(mousex,mousey,pics[4][1],62);
+                            car = true;
+                        }
+                        if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
+                            carr=pics[5][0];
+                            carried=new Tower(mousex,mousey,pics[5][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
+                            carr=pics[5][1];
+                            carried=new Tower(mousex,mousey,pics[5][1],62);
+                            car = true;
+                        }
                     }
                 }//Side Menu Stuff
 
@@ -141,7 +184,7 @@ public class Main extends JPanel{
             public void keyTyped (KeyEvent e){
                 int code = e.getKeyChar();
                 if (code == 'r') {
-                    makeMap();
+                    restart();
                 }
                 if (code == 'p') {
                     timer.stop();
@@ -183,28 +226,27 @@ public class Main extends JPanel{
                         }
                     }
                 }
-                        for (Projectile p: pro){
-                            for (Enemy e: enemy){
-                                if(e.intersects(p));
-                                e.setHealth(e.getHealth()-100);
-                            }
-                        }
-                for (int i = 0; i < pro.size(); i++) {
-                    for (int j = 0; j <enemy.size() ; j++) {
-                        if(pro.get(i).intersects(enemy.get(j))){
-                            pro.remove(i);
-                        }
-
-                    }
-
-                }
-
-
+//                for (Projectile p: pro){
+//                    for (Enemy e: enemy){
+//                        if(e.intersects(p));
+//                        e.setHealth(e.getHealth()-100);
+//                    }
+//                }
+//                for (int i = 0; i < pro.size(); i++) {
+//                    for (int j = 0; j <enemy.size() ; j++) {
+//                        if(pro.get(i).intersects(enemy.get(j))){
+//                            pro.remove(i);
+//                        }
+//
+//                    }
+//
+//                }
 //                for (Enemy e: enemy){
 //                    if(e.getHealth()<1){
 //                        enemy.remove(e);
 //                    }
 //                }
+
                 count++;
                 if(count > maxCount) {
                     int rand = (int)(Math.random()*2);
@@ -216,13 +258,30 @@ public class Main extends JPanel{
                     }
                     count = 0;
                 }
-                for (int i = 0; i < enemy.size(); i++) {
-                    enemy.get(i).update();
-                    if(enemy.get(i).getLoc().x >= 1000){
-                        health -= enemy.get(i).getHealth();
-                        enemy.remove(i);
-                        i--;
+
+                for (int e = 0; e < enemy.size(); e++) {
+                    enemy.get(e).update();
+                    if(enemy.get(e).getLoc().x >= 1000){
+                        health -= enemy.get(e).getHealth();
+                        enemy.remove(e);
+                        e--;
                     }
+                    for (int p = 0; p < pro.size(); p++) {
+                        if (pro.get(p).intersects(enemy.get(e))) {
+                            enemyDead = true;
+                            intersectE = e;
+                            intersectP = p;
+                        }
+                    }
+                }
+                if(enemyDead){
+                    enemy.get(intersectE).setHealth(enemy.get(intersectE).getHealth()-1);
+                    if(enemy.get(intersectE).getHealth() <= 0){
+                        enemy.remove(intersectE);
+                    }
+                    pro.remove(intersectP);
+                    enemyDead = false;
+                    money+=20;
                 }
 
              repaint();
@@ -270,12 +329,16 @@ public class Main extends JPanel{
             t.draw(g2);
         }
 
-        if(health == 0){
+        if(health <= 0){
             timer.stop();
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
             g2.setColor(Color.black);
             g2.drawString("Game Over", getWidth() / 3, 200);
         }
+
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+        g2.setColor(Color.black);
+        g2.drawString("Money: " + money, 800, 700);
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -368,6 +431,20 @@ public class Main extends JPanel{
             }
         }
 
+    }
+
+    public void restart(){
+        enemy.clear();
+        pro.clear();
+        copy.clear();
+        towers.clear();
+        count = 1;
+        maxCount = 20;
+        money = 200;
+        health = 10;
+        enemyDead = false;
+        makeMap();
+        timer.restart();
     }
 
     public static void main(String[] args) {
