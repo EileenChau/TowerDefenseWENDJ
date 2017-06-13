@@ -281,6 +281,7 @@ public class Main extends JPanel{
                     }
                     pro.remove(intersectP);
                     enemyDead = false;
+                    money+=20;
                 }
 
              repaint();
