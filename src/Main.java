@@ -15,17 +15,17 @@ import java.util.ArrayList;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
-    private ArrayList<Projectile> pro= new ArrayList<>();
-    private ArrayList<Projectile> copy= new ArrayList<>();
+    private ArrayList<Projectile> pro;
+    private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
     private Timer timer;
     private ArrayList<Enemy> enemy;
     private boolean car;
     private Tower carried;
     private BufferedImage carr;
-    private ArrayList<Tower> towers= new ArrayList<>();
+    private ArrayList<Tower> towers;
     private int screen = 0;
-    private int size = 50;
+    private int size;
     private int count, maxCount;
     private int money, health;
     private boolean enemyDead;
@@ -38,6 +38,16 @@ public class Main extends JPanel{
     public Main() {
         setSize(FRAMEWIDTH, FRAMEHEIGHT);
         tiles = new Tile[16][16];
+        enemy = new ArrayList<>();
+        pro= new ArrayList<>();
+        copy= new ArrayList<>();
+        towers= new ArrayList<>();
+        count = 1;
+        maxCount = 20;
+        money = 200;
+        health = 10;
+        enemyDead = false;
+        size = 50;
         try {
             pics[0][0] = ImageIO.read(new File("res/Mario.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
@@ -53,12 +63,7 @@ public class Main extends JPanel{
             e.printStackTrace();
         }// Pic Maker
         makeMap();
-        enemy = new ArrayList<>();
-        count = 1;
-        maxCount = 100;
-        money = 200;
-        health = 10;
-        enemyDead = false;
+
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -167,7 +172,7 @@ public class Main extends JPanel{
             public void keyTyped (KeyEvent e){
                 int code = e.getKeyChar();
                 if (code == 'r') {
-                    makeMap();
+                    restart();
                 }
                 if (code == 'p') {
                     timer.stop();
@@ -242,6 +247,7 @@ public class Main extends JPanel{
                     }
                     count = 0;
                 }
+
                 for (int e = 0; e < enemy.size(); e++) {
                     enemy.get(e).update();
                     for (int p = 0; p < pro.size(); p++) {
@@ -312,6 +318,10 @@ public class Main extends JPanel{
             g2.setColor(Color.black);
             g2.drawString("Game Over", getWidth() / 3, 200);
         }
+
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+        g2.setColor(Color.black);
+        g2.drawString("Money: " + money, 800, 700);
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -404,6 +414,20 @@ public class Main extends JPanel{
             }
         }
 
+    }
+
+    public void restart(){
+        enemy.clear();
+        pro.clear();
+        copy.clear();
+        towers.clear();
+        count = 1;
+        maxCount = 20;
+        money = 200;
+        health = 10;
+        enemyDead = false;
+        makeMap();
+        timer.restart();
     }
 
     public static void main(String[] args) {
