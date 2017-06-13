@@ -60,7 +60,7 @@ public class Squirtle extends Tower {
                 if(dists[i]<range){
                     least =dists[i];
                     index=i;
-                    System.out.println("ye");
+//                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -74,7 +74,7 @@ public class Squirtle extends Tower {
             en=enemies.get(index);
             WaterBomb p = new WaterBomb(x2,y2,0,100,wat, en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-            System.out.println(least);
+//            System.out.println(least);
             pr.add(p);
         }
 

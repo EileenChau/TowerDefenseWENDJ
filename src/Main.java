@@ -25,10 +25,11 @@ public class Main extends JPanel{
     private ArrayList<Tower> towers;
     private int screen = 0;
     private int size;
-    private int count, maxCount;
+    private int count, maxCount, counter, maxCounter;
     private int money, health, wave;
     private boolean enemyDead;
     private int intersectE, intersectP;
+    private boolean start;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -42,11 +43,14 @@ public class Main extends JPanel{
         towers= new ArrayList<>();
         count = 0;
         maxCount = 20;
+        counter = 0;
+        maxCounter = 20;
         money = 200;
         health = 10;
         enemyDead = false;
         size = 50;
-        wave = 0;
+        wave = 1;
+        start = false;
         try {
             pics[0][0] = ImageIO.read(new File("res/Mario.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
@@ -152,12 +156,12 @@ public class Main extends JPanel{
                         }
 
                         //play button before wave
-                        if (mousex > 850 && mousex < 950 && mousey > 650 && mousey < 700) {
-                            nextWave();
+                        if (mousex > 850 && mousex < 950 && mousey > 650 && mousey < 700 && enemy.size() == 0) {
+                            timer.start();
+                            start = true;
                         }
                     }
                 }//Side Menu Stuff
-
 
             }
 
@@ -253,13 +257,42 @@ public class Main extends JPanel{
                     }
                     pro.remove(intersectP);
                     enemyDead = false;
-                    money+=20;
+                    money+=5;
                 }
 
-                count++;
-                if(count > maxCount){
-                    enemy.add(new Enemy(tiles));
-                    count = 0;
+                if(start) {
+                    count++;
+                    if (count > maxCount && counter < maxCounter) {
+                        int rand = (int) (Math.random() * 7);
+                        if (rand == 0) {
+                            enemy.add(new Enemy(tiles));
+                        }
+                        if (rand == 1) {
+                            enemy.add(new BlueShroom(tiles));
+                        }
+                        if (rand == 2) {
+                            enemy.add(new GreenShroom(tiles));
+                        }
+                        if (rand == 3) {
+                            enemy.add(new PinkShroom(tiles));
+                        }
+                        if (rand == 4) {
+                            enemy.add(new YellowShroom(tiles));
+                        }
+                        if (rand == 5) {
+                            enemy.add(new WhiteShroom(tiles));
+                        }
+                        if (rand == 6) {
+                            enemy.add(new RainbowShroom(tiles));
+                        }
+                        count = 0;
+                        counter++;
+                    }
+                    if(counter >= maxCounter && enemy.size() == 0){
+                        timer.stop();
+                        wave++;
+                        counter = 0;
+                    }
                 }
 
              repaint();
@@ -321,7 +354,7 @@ public class Main extends JPanel{
         g2.drawString("Money: " + money, 825, 730);
         g2.drawString("Wave: " + wave, 825, 760);
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-        g2.drawString("Next Wave", 865, 680);
+        g2.drawString("Start Wave", 862, 680);
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -422,16 +455,14 @@ public class Main extends JPanel{
         towers.clear();
         count = 0;
         maxCount = 20;
+        counter = 0;
+        maxCounter = 20;
         money = 200;
         health = 10;
         enemyDead = false;
-        wave = 0;
+        wave = 1;
         makeMap();
         timer.restart();
-    }
-
-    public void nextWave(){
-        wave++;
     }
 
     public static void main(String[] args) {
