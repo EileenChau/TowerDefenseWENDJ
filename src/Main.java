@@ -59,6 +59,8 @@ public class Main extends JPanel{
             pics[3][1] = ImageIO.read(new File("res/Kirby.png" ));
             pics[4][0] = ImageIO.read(new File("res/Road Spikes.png" ));
             pics[4][1] = ImageIO.read(new File("res/Banana Peel.png" ));
+            pics[5][0] = ImageIO.read(new File("res/Samus.png" ));
+            pics[5][1] = ImageIO.read(new File("res/Pit.png" ));
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
@@ -137,6 +139,16 @@ public class Main extends JPanel{
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
                             carried=new Tower(mousex,mousey,pics[4][1],62);
+                            car = true;
+                        }
+                        if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
+                            carr=pics[5][0];
+                            carried=new Tower(mousex,mousey,pics[5][0],62);
+                            car = true;
+                        }
+                        if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
+                            carr=pics[5][1];
+                            carried=new Tower(mousex,mousey,pics[5][1],62);
                             car = true;
                         }
                     }
@@ -229,13 +241,12 @@ public class Main extends JPanel{
 //                    }
 //
 //                }
-
-
 //                for (Enemy e: enemy){
 //                    if(e.getHealth()<1){
 //                        enemy.remove(e);
 //                    }
 //                }
+
                 count++;
                 if(count > maxCount) {
                     int rand = (int)(Math.random()*2);
@@ -250,6 +261,11 @@ public class Main extends JPanel{
 
                 for (int e = 0; e < enemy.size(); e++) {
                     enemy.get(e).update();
+                    if(enemy.get(e).getLoc().x >= 1000){
+                        health -= enemy.get(e).getHealth();
+                        enemy.remove(e);
+                        e--;
+                    }
                     for (int p = 0; p < pro.size(); p++) {
                         if (pro.get(p).intersects(enemy.get(e))) {
                             enemyDead = true;
