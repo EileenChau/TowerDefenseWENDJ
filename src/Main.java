@@ -197,6 +197,14 @@ public class Main extends JPanel{
                 if (code == 'p') {
                     timer.stop();
                 }
+                if(code == 's'){
+                    timer.setDelay(timer.getDelay()+10);
+                }
+                if(code == 'f'){
+                    if((timer.getDelay() - 10) > 0) {
+                        timer.setDelay(timer.getDelay() - 10);
+                    }
+                }
             }
 
             @Override
@@ -263,7 +271,7 @@ public class Main extends JPanel{
                 if(start) {
                     count++;
                     if (count > maxCount && counter < maxCounter) {
-                        int rand = (int) (Math.random() * 7);
+                        int rand = (int) (Math.random() * wave);
                         if (rand == 0) {
                             enemy.add(new Enemy(tiles));
                         }
@@ -284,6 +292,12 @@ public class Main extends JPanel{
                         }
                         if (rand == 6) {
                             enemy.add(new RainbowShroom(tiles));
+                        }
+                        if(rand == 7){
+                            enemy.add(new SpikedShell(tiles));
+                        }
+                        if(rand == 8){
+                            enemy.add(new Bowser(tiles));
                         }
                         count = 0;
                         counter++;
@@ -460,7 +474,9 @@ public class Main extends JPanel{
         money = 200;
         health = 10;
         enemyDead = false;
+        size = 50;
         wave = 1;
+        start = false;
         makeMap();
         timer.restart();
     }
