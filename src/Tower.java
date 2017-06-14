@@ -13,13 +13,15 @@ public class Tower {
     Projectile pro;
     int shootnum;
     int shootCount=1;
+    int price;
 
-    public Tower(int x, int y, BufferedImage image, int r) {
+    public Tower(int x, int y, BufferedImage image, int r, int p) {
         x2 = x;
         y2 = y;
         pic = image;
         radius = r;
         range = r;
+        price = p;
     }
 
     public void setShootnum(int shootnum) {
@@ -85,6 +87,10 @@ public class Tower {
 
     public int getY2() {
         return y2;
+    }
+
+    public int getPrice(){
+        return price;
     }
 
 

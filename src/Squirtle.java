@@ -1,7 +1,4 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.*;
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +9,7 @@ public class Squirtle extends Tower {
     int shootNum;
 
     public Squirtle(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r);
+        super(x,y,image,r, 20);
         radius=r;
         range=r;
         setShootnum(0);

@@ -46,7 +46,7 @@ public class Main extends JPanel{
         counter = 0;
         maxCounter = 20;
         money = 200;
-        health = 10;
+        health = 50;
         enemyDead = false;
         size = 50;
         wave = 1;
@@ -97,62 +97,98 @@ public class Main extends JPanel{
                         if (mousex > 810 && mousex < 890 && mousey > 28 && mousey < 95) {
                             carr=pics[0][0];
                             carried=new SimpleTower(mousex,mousey,pics[0][0],62);
-                            car = true;
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
                             carr=pics[0][1];
-                            carried=new Tower(mousex,mousey,pics[0][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[0][1],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 105 && mousey < 180) {
                             carr=pics[1][0];
                             carried=new Pikachu(mousex,mousey,pics[1][0],62);
-                            car = true;
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 105 && mousey < 180) {
                             carr=pics[1][1];
                             carried=new Squirtle(mousex,mousey,pics[1][1],62);
-                            car = true;
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
-                            carried=new Tower(mousex,mousey,pics[2][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[2][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
                             carr=pics[2][1];
-                            carried=new Tower(mousex,mousey,pics[2][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[2][1],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
                             carr=pics[3][0];
-                            carried=new Tower(mousex,mousey,pics[3][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[3][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
                             carr=pics[3][1];
                             carried=new Kirby(mousex,mousey,pics[3][1],62);
-                            car = true;
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
                             carr=pics[4][0];
-                            carried=new Tower(mousex,mousey,pics[4][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[4][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new Tower(mousex,mousey,pics[4][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[4][1],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
-                            carried=new Tower(mousex,mousey,pics[5][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[5][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
                             carr=pics[5][1];
-                            carried=new Tower(mousex,mousey,pics[5][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[5][1],62,20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
 
                         //play button before waves
@@ -289,8 +325,8 @@ public class Main extends JPanel{
 
                 if(start) {
                     count++;
-                    if (count > maxCount && counter < maxCounter) {
-                        int rand = (int) (Math.random() * wave);
+                    if (count > maxCount-wave/10 && counter < maxCounter*wave/2) {
+                        int rand = (int) (Math.random() * wave/5);
                         if (rand == 0) {
                             enemy.add(new Enemy(tiles));
                         }
@@ -318,7 +354,7 @@ public class Main extends JPanel{
                         if(rand == 8){
                             enemy.add(new SpikedShell(tiles));
                         }
-                        if(rand == 9){
+                        if(rand >= 9){
                             enemy.add(new Bowser(tiles));
                         }
                         count = 0;
@@ -384,10 +420,11 @@ public class Main extends JPanel{
 
         g2.setColor(Color.RED);
         g2.fillRect(850, 650, 100, 50);
-        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
         g2.setColor(Color.black);
-        g2.drawString("Money: " + money, 825, 730);
-        g2.drawString("Wave: " + wave, 825, 760);
+        g2.drawString("Money: " + money, 825, 720);
+        g2.drawString("Wave: " + wave, 825, 740);
+        g2.drawString("Health: " + health, 825, 760);
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         g2.drawString("Start Wave", 862, 680);
 

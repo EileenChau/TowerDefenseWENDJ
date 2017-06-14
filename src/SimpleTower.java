@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class SimpleTower extends Tower {
     int radius, range;
     public SimpleTower(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r);
+        super(x,y,image,r, 20);
         radius=r;
         range=r;
         setShootnum(0);

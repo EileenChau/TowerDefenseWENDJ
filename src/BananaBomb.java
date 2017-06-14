@@ -5,14 +5,8 @@ import java.awt.image.BufferedImage;
  */
 public class BananaBomb extends Tower {
 
-    private int x, y;
-    private BufferedImage pic;
-
     public BananaBomb(int x, int y, BufferedImage pic){
-        super(x, y, pic, 5);
-        this.x = x;
-        this.y = y;
-        this.pic = pic;
+        super(x, y, pic, 5, 20);
         setPic("Banana Peel.png");
 
     }
