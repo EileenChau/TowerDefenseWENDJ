@@ -1,40 +1,22 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.*;
-import java.io.File;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * Created by samuel_wolff on 6/10/17.
+ * Created by eileen_chau on 6/14/17.
  */
-public class Squirtle extends Tower {
-    ArrayList<WaterBomb> pop=new ArrayList<WaterBomb>();
-    int shootNum;
-
-    public Squirtle(int x, int y, BufferedImage image, int r){
+public class Kirby extends Tower {
+    int radius, range;
+    public Kirby(int x, int y, BufferedImage image, int r){
         super(x,y,image,r);
         radius=r;
         range=r;
         setShootnum(0);
-        //this.setPic("MarioP.png");
+        setPic("Kirby.png");
         //        this.setPro();
-        setRange(300);
-    }
-    @Override
-    public boolean check(int x, int y, Tile[][] tiles) {
-        Tile spot = tiles[((y+31) / 50)][((x+31) / 50)];
-
-        if (spot instanceof LandTile || spot instanceof RoadTile) {
-            return false;
-        }
-        return true;
+        setRange(200);
     }
 
-    public ArrayList<WaterBomb> getPop() {
-        return pop;
-    }
-
-    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> pr){
+    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
         Enemy en;
         double[]dists= new double[enemies.size()];
         int count=0;
@@ -61,12 +43,9 @@ public class Squirtle extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            WaterBomb p = new WaterBomb(getX2(),getY2(),0,en);
+            AirBoomarang p = new AirBoomarang(getX2(),getY2(),0,en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-//            System.out.println(least);
-            pr.add(p);
+            bullets.add(p);
         }
-
     }
-
 }

@@ -11,18 +11,16 @@ public class Projectile extends Sprite{
     private int damage;
     private int radius;
     private Enemy en;
-    private BufferedImage pic;
 
 
-    public Projectile(int x, int y, int dir, int damage, BufferedImage pic, Enemy e){
+    public Projectile(int x, int y, int dir, int damage, Enemy e){
         super(x, y, dir);
         this.x = x;
         this.y = y;
-        this.pic=pic;
         this.damage = damage;
         en= e;
-        this.radius = radius;
-        //setPic("");
+//        radius = r;
+        setPic("AirBoomarang.png", NORTH);
         //this.target = target;
 
 
@@ -36,7 +34,7 @@ public class Projectile extends Sprite{
 
     @Override
     public void update(){
-       int dir= this.getDirection(this.getLoc(),en.getLoc());
+        int dir= this.getDirection(this.getLoc(),en.getLoc());
         this.setDir(dir);
         super.update();
 
@@ -60,8 +58,7 @@ public class Projectile extends Sprite{
     }
 
     public void draw(Graphics2D g2){
-        g2.drawImage(pic, x, y, pic.getWidth(), pic.getHeight(), null);
-
+        super.draw(g2);
     }
 
 //    public boolean hit(Sprite other){

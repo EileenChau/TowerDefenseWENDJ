@@ -20,7 +20,6 @@ public class Tower {
         pic = image;
         radius = r;
         range = r;
-
     }
 
     public void setShootnum(int shootnum) {
@@ -48,20 +47,14 @@ public class Tower {
     }
 
     public boolean check(int x, int y, Tile[][] tiles) {
-        int sx=x/50;
-        int sy=y/50;
         Tile spot = tiles[((y+31) / 50)][((x+31) / 50)];
-
         if (spot instanceof WaterTile || spot instanceof RoadTile) {
             return false;
         }
-                return true;
+        return true;
 
     }
 
-    public void shoot(){
-
-    }
     public BufferedImage getPic() {
         return pic;
     }

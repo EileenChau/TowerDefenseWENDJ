@@ -106,7 +106,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 105 && mousey < 180) {
                             carr=pics[1][0];
-                            carried=new Tower(mousex,mousey,pics[1][0],62);
+                            carried=new Pikachu(mousex,mousey,pics[1][0],62);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 105 && mousey < 180) {
@@ -131,7 +131,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
                             carr=pics[3][1];
-                            carried=new Tower(mousex,mousey,pics[3][1],62);
+                            carried=new Kirby(mousex,mousey,pics[3][1],62);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
@@ -155,7 +155,7 @@ public class Main extends JPanel{
                             car = true;
                         }
 
-                        //play button before wave
+                        //play button before waves
                         if (mousex > 850 && mousex < 950 && mousey > 650 && mousey < 700 && enemy.size() == 0) {
                             timer.start();
                             start = true;
@@ -241,6 +241,25 @@ public class Main extends JPanel{
                             ((Squirtle) t).shoot(enemy, pro);
                         }
                     }
+                    if (t instanceof SimpleTower) {
+                        if (t.Shootable()) {
+                            ((SimpleTower) t).shoot(enemy, pro);
+                        }
+                    }
+                    if (t instanceof Pikachu) {
+                        if (t.Shootable()) {
+                            ((Pikachu) t).shoot(enemy, pro);
+                        }
+                    }
+                    if (t instanceof Kirby) {
+                        if (t.Shootable()) {
+                            ((Kirby) t).shoot(enemy, pro);
+                        }
+                    }
+                }
+
+                for(Projectile p: pro){
+                    p.update();
                 }
 
                 for (int e = 0; e < enemy.size(); e++) {
@@ -291,12 +310,15 @@ public class Main extends JPanel{
                             enemy.add(new WhiteShroom(tiles));
                         }
                         if (rand == 6) {
+                            enemy.add(new BlackShroom(tiles));
+                        }
+                        if (rand == 7) {
                             enemy.add(new RainbowShroom(tiles));
                         }
-                        if(rand == 7){
+                        if(rand == 8){
                             enemy.add(new SpikedShell(tiles));
                         }
-                        if(rand == 8){
+                        if(rand == 9){
                             enemy.add(new Bowser(tiles));
                         }
                         count = 0;
@@ -348,7 +370,6 @@ public class Main extends JPanel{
         }
         for(Projectile p: pro){
             p.draw(g2);
-            p.update();
         }
         for (Tower t: towers){
             t.draw(g2);
