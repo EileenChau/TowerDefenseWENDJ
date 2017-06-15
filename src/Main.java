@@ -139,7 +139,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new BananaBomb(mousex,mousey,pics[4][1],5);
+                            carried=new BananaBomb(mousex,mousey,pics[4][1]);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
@@ -226,19 +226,25 @@ public class Main extends JPanel{
                             ((Squirtle) t).shoot(enemy, pro);
                         }
                     }
-                }
+                    if(t instanceof SimpleTower ){
+                        //if (t.Shootable()){
+                            ((SimpleTower) t).Shoot(pro,enemy);
+                       // }
 
-                for(Tower t: towers){
-                    if(t instanceof BananaBomb){
-                        for(Enemy e: enemy){
-                            if(t.hit(e) == true){
-
-
-                            }
-                        }
                     }
-
                 }
+
+//                for(Tower t: towers){
+//                    if(t instanceof BananaBomb){
+//                        for(Enemy e: enemy){
+//                            if(t.hit(e) == true){
+//
+//
+//                            }
+//                        }
+//                    }
+//
+//                }
 
 
 
@@ -322,6 +328,7 @@ public class Main extends JPanel{
                 e.draw(g2);
             }
         }
+
         g2.setColor(new Color(172, 116, 30));
         g2.fillRect(800,0,200,800);
         g2.setColor(Color.WHITE);
@@ -338,10 +345,7 @@ public class Main extends JPanel{
         if(car){
             g2.drawImage(carr,mousex-20,mousey-20,null);
         }
-        for(Projectile p: pro){
-            p.draw(g2);
-            p.update();
-        }
+
         for (Tower t: towers){
             t.draw(g2);
         }
@@ -356,7 +360,10 @@ public class Main extends JPanel{
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
         g2.setColor(Color.black);
         g2.drawString("Money: " + money, 800, 700);
-
+        for(Projectile p: pro){
+            p.draw(g2);
+            p.update();
+        }
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
                 play = Color.WHITE;

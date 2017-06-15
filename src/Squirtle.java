@@ -72,7 +72,7 @@ public class Squirtle extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            WaterBomb p = new WaterBomb(x2,y2,0,100,wat, en);
+            WaterBomb p = new WaterBomb(x2,y2,0, en, wat);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             System.out.println(least);
             pr.add(p);

@@ -43,7 +43,6 @@ public class SimpleTower extends Tower {
                 if(dists[i]<range){
                     least =dists[i];
                     index=i;
-                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -55,7 +54,7 @@ public class SimpleTower extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            WaterBomb p = new WaterBomb(x2,y2,0,100,bul, en);
+            Fireball p = new Fireball(x2,y2,0, en, bul);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             bullets.add(p);
         }
