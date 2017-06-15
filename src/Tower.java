@@ -59,7 +59,7 @@ public class Tower {
 
     }
 
-    public void shoot(ArrayList<Enemy> en, ArrayList<Projectile> pro){
+    public void shoot(){
 
     }
     public BufferedImage getPic() {

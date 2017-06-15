@@ -30,6 +30,7 @@ public class Main extends JPanel{
     private int money, health;
     private boolean enemyDead;
     private int intersectE, intersectP;
+    private BananaBomb banana;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -138,7 +139,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new Tower(mousex,mousey,pics[4][1],62);
+                            carried=new BananaBomb(mousex,mousey,pics[4][1],5);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
@@ -226,6 +227,22 @@ public class Main extends JPanel{
                         }
                     }
                 }
+
+                for(Tower t: towers){
+                    if(t instanceof BananaBomb){
+                        for(Enemy e: enemy){
+                            if(t.hit(e) == true){
+
+
+                            }
+                        }
+                    }
+
+                }
+
+
+
+
 //                for (Projectile p: pro){
 //                    for (Enemy e: enemy){
 //                        if(e.intersects(p));
