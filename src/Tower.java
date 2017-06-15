@@ -15,10 +15,10 @@ public class Tower {
     int shootCount=1;
     int price;
 
-    public Tower(int x, int y, BufferedImage image, int r, int p) {
+    public Tower(int x, int y, BufferedImage pic, int r, int p) {
         x2 = x;
         y2 = y;
-        pic = image;
+        setPic("Mario.png");
         radius = r;
         range = r;
         price = p;

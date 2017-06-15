@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 /**
@@ -6,8 +7,8 @@ import java.util.ArrayList;
  */
 public class Kirby extends Tower {
     int radius, range;
-    public Kirby(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r, 20);
+    public Kirby(int x, int y, BufferedImage pic, int r){
+        super(x,y,pic,r, 20);
         radius=r;
         range=r;
         setShootnum(0);
