@@ -13,14 +13,15 @@ public class Tower {
     Projectile pro;
     int shootnum;
     int shootCount=1;
+    int price;
 
-    public Tower(int x, int y, BufferedImage image, int r) {
+    public Tower(int x, int y, BufferedImage pic, int r, int p) {
         x2 = x;
         y2 = y;
-        pic = image;
+        setPic("Mario.png");
         radius = r;
         range = r;
-
+        price = p;
     }
 
     public void setShootnum(int shootnum) {
@@ -48,20 +49,14 @@ public class Tower {
     }
 
     public boolean check(int x, int y, Tile[][] tiles) {
-        int sx=x/50;
-        int sy=y/50;
         Tile spot = tiles[((y+31) / 50)][((x+31) / 50)];
-
         if (spot instanceof WaterTile || spot instanceof RoadTile) {
             return false;
         }
-                return true;
+        return true;
 
     }
 
-    public void shoot(){
-
-    }
     public BufferedImage getPic() {
         return pic;
     }
@@ -92,6 +87,10 @@ public class Tower {
 
     public int getY2() {
         return y2;
+    }
+
+    public int getPrice(){
+        return price;
     }
 
 

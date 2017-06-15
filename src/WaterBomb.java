@@ -5,7 +5,7 @@ import java.awt.image.*;
  */
 public class WaterBomb extends Projectile {
 
-    public WaterBomb(int x, int y, int dir, Enemy en, BufferedImage pic){
+    public WaterBomb(int x, int y, int dir, Enemy en){
         super(x,y,dir,5,en);
         setSpeed(30);
         setPic("WaterBlast.png", NORTH);

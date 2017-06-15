@@ -16,7 +16,6 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
     private ArrayList<Projectile> pro;
-    private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
     private Timer timer;
     private ArrayList<Enemy> enemy;
@@ -26,11 +25,11 @@ public class Main extends JPanel{
     private ArrayList<Tower> towers;
     private int screen = 0;
     private int size;
-    private int count, maxCount;
-    private int money, health;
+    private int count, maxCount, counter, maxCounter;
+    private int money, health, wave;
     private boolean enemyDead;
     private int intersectE, intersectP;
-    private BananaBomb banana;
+    private boolean start;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -41,14 +40,17 @@ public class Main extends JPanel{
         tiles = new Tile[16][16];
         enemy = new ArrayList<>();
         pro= new ArrayList<>();
-        copy= new ArrayList<>();
         towers= new ArrayList<>();
-        count = 1;
+        count = 0;
         maxCount = 20;
+        counter = 0;
+        maxCounter = 20;
         money = 200;
-        health = 10;
+        health = 50;
         enemyDead = false;
         size = 50;
+        wave = 1;
+        start = false;
         try {
             pics[0][0] = ImageIO.read(new File("res/Mario.png" ));
             pics[0][1] = ImageIO.read(new File("res/Donkey Kong.png" ));
@@ -95,66 +97,107 @@ public class Main extends JPanel{
                         if (mousex > 810 && mousex < 890 && mousey > 28 && mousey < 95) {
                             carr=pics[0][0];
                             carried=new SimpleTower(mousex,mousey,pics[0][0],62);
-                            car = true;
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
                             carr=pics[0][1];
-                            carried=new Tower(mousex,mousey,pics[0][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[0][1],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 105 && mousey < 180) {
                             carr=pics[1][0];
-                            carried=new Tower(mousex,mousey,pics[1][0],62);
-                            car = true;
+                            carried=new Pikachu(mousex,mousey,pics[1][0],62);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 105 && mousey < 180) {
                             carr=pics[1][1];
                             carried=new Squirtle(mousex,mousey,pics[1][1],62);
-                            car = true;
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
-                            carried=new Tower(mousex,mousey,pics[2][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[2][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
                             carr=pics[2][1];
-                            carried=new Tower(mousex,mousey,pics[2][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[2][1],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
                             carr=pics[3][0];
-                            carried=new Tower(mousex,mousey,pics[3][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[3][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
                             carr=pics[3][1];
-                            carried=new Tower(mousex,mousey,pics[3][1],62);
-                            car = true;
+                            carried=new Kirby(mousex,mousey,pics[3][1],62);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
                             carr=pics[4][0];
-                            carried=new Tower(mousex,mousey,pics[4][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[4][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new BananaBomb(mousex,mousey,pics[4][1]);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[4][1],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
-                            carried=new Tower(mousex,mousey,pics[5][0],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[5][0],62, 20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
                             carr=pics[5][1];
-                            carried=new Tower(mousex,mousey,pics[5][1],62);
-                            car = true;
+                            carried=new Tower(mousex,mousey,pics[5][1],62,20);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
+                        }
+
+                        //play button before waves
+                        if (mousex > 850 && mousex < 950 && mousey > 650 && mousey < 700 && enemy.size() == 0) {
+                            timer.start();
+                            start = true;
                         }
                     }
                 }//Side Menu Stuff
-
 
             }
 
@@ -189,6 +232,14 @@ public class Main extends JPanel{
                 }
                 if (code == 'p') {
                     timer.stop();
+                }
+                if(code == 's'){
+                    timer.setDelay(timer.getDelay()+10);
+                }
+                if(code == 'f'){
+                    if((timer.getDelay() - 10) > 0) {
+                        timer.setDelay(timer.getDelay() - 10);
+                    }
                 }
             }
 
@@ -226,60 +277,25 @@ public class Main extends JPanel{
                             ((Squirtle) t).shoot(enemy, pro);
                         }
                     }
-                    if(t instanceof SimpleTower ){
-                        //if (t.Shootable()){
-                            ((SimpleTower) t).Shoot(pro,enemy);
-                       // }
-
+                    if (t instanceof SimpleTower) {
+                        if (t.Shootable()) {
+                            ((SimpleTower) t).shoot(enemy, pro);
+                        }
+                    }
+                    if (t instanceof Pikachu) {
+                        if (t.Shootable()) {
+                            ((Pikachu) t).shoot(enemy, pro);
+                        }
+                    }
+                    if (t instanceof Kirby) {
+                        if (t.Shootable()) {
+                            ((Kirby) t).shoot(enemy, pro);
+                        }
                     }
                 }
 
-//                for(Tower t: towers){
-//                    if(t instanceof BananaBomb){
-//                        for(Enemy e: enemy){
-//                            if(t.hit(e) == true){
-//
-//
-//                            }
-//                        }
-//                    }
-//
-//                }
-
-
-
-
-//                for (Projectile p: pro){
-//                    for (Enemy e: enemy){
-//                        if(e.intersects(p));
-//                        e.setHealth(e.getHealth()-100);
-//                    }
-//                }
-//                for (int i = 0; i < pro.size(); i++) {
-//                    for (int j = 0; j <enemy.size() ; j++) {
-//                        if(pro.get(i).intersects(enemy.get(j))){
-//                            pro.remove(i);
-//                        }
-//
-//                    }
-//
-//                }
-//                for (Enemy e: enemy){
-//                    if(e.getHealth()<1){
-//                        enemy.remove(e);
-//                    }
-//                }
-
-                count++;
-                if(count > maxCount) {
-                    int rand = (int)(Math.random()*2);
-                    if(rand == 0) {
-                        enemy.add(new Enemy(tiles));
-                    }
-                    else {
-                        enemy.add(new BlueShroom(tiles));
-                    }
-                    count = 0;
+                for(Projectile p: pro){
+                    p.update();
                 }
 
                 for (int e = 0; e < enemy.size(); e++) {
@@ -304,7 +320,51 @@ public class Main extends JPanel{
                     }
                     pro.remove(intersectP);
                     enemyDead = false;
-                    money+=20;
+                    money+=5;
+                }
+
+                if(start) {
+                    count++;
+                    if (count > maxCount-wave/10 && counter < maxCounter*wave/2) {
+                        int rand = (int) (Math.random() * wave/5);
+                        if (rand == 0) {
+                            enemy.add(new Enemy(tiles));
+                        }
+                        if (rand == 1) {
+                            enemy.add(new BlueShroom(tiles));
+                        }
+                        if (rand == 2) {
+                            enemy.add(new GreenShroom(tiles));
+                        }
+                        if (rand == 3) {
+                            enemy.add(new PinkShroom(tiles));
+                        }
+                        if (rand == 4) {
+                            enemy.add(new YellowShroom(tiles));
+                        }
+                        if (rand == 5) {
+                            enemy.add(new WhiteShroom(tiles));
+                        }
+                        if (rand == 6) {
+                            enemy.add(new BlackShroom(tiles));
+                        }
+                        if (rand == 7) {
+                            enemy.add(new RainbowShroom(tiles));
+                        }
+                        if(rand == 8){
+                            enemy.add(new SpikedShell(tiles));
+                        }
+                        if(rand >= 9){
+                            enemy.add(new Bowser(tiles));
+                        }
+                        count = 0;
+                        counter++;
+                    }
+                    if(counter >= maxCounter && enemy.size() == 0){
+                        timer.stop();
+                        wave++;
+                        counter = 0;
+                    }
                 }
 
              repaint();
@@ -328,7 +388,6 @@ public class Main extends JPanel{
                 e.draw(g2);
             }
         }
-
         g2.setColor(new Color(172, 116, 30));
         g2.fillRect(800,0,200,800);
         g2.setColor(Color.WHITE);
@@ -345,7 +404,9 @@ public class Main extends JPanel{
         if(car){
             g2.drawImage(carr,mousex-20,mousey-20,null);
         }
-
+        for(Projectile p: pro){
+            p.draw(g2);
+        }
         for (Tower t: towers){
             t.draw(g2);
         }
@@ -357,13 +418,16 @@ public class Main extends JPanel{
             g2.drawString("Game Over", getWidth() / 3, 200);
         }
 
-        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+        g2.setColor(Color.RED);
+        g2.fillRect(850, 650, 100, 50);
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
         g2.setColor(Color.black);
-        g2.drawString("Money: " + money, 800, 700);
-        for(Projectile p: pro){
-            p.draw(g2);
-            p.update();
-        }
+        g2.drawString("Money: " + money, 825, 720);
+        g2.drawString("Wave: " + wave, 825, 740);
+        g2.drawString("Health: " + health, 825, 760);
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+        g2.drawString("Start Wave", 862, 680);
+
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
                 play = Color.WHITE;
@@ -460,13 +524,17 @@ public class Main extends JPanel{
     public void restart(){
         enemy.clear();
         pro.clear();
-        copy.clear();
         towers.clear();
-        count = 1;
+        count = 0;
         maxCount = 20;
+        counter = 0;
+        maxCounter = 20;
         money = 200;
         health = 10;
         enemyDead = false;
+        size = 50;
+        wave = 1;
+        start = false;
         makeMap();
         timer.restart();
     }

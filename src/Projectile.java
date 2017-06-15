@@ -19,7 +19,6 @@ public class Projectile extends Sprite{
         super(x, y, dir);
         this.x = x;
         this.y = y;
-        this.pic=pic;
         this.damage = damage;
         en= e;
         this.radius = radius;

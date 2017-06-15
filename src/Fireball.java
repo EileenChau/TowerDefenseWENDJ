@@ -5,7 +5,7 @@ import java.awt.image.*;
  */
 public class Fireball extends Projectile {
 
-    public Fireball(int x, int y, int dir, Enemy e, BufferedImage pic) {
+    public Fireball(int x, int y, int dir, Enemy e) {
         super(x, y, dir, 5, e);
         setSpeed(30);
         setPic("Mario Fireball.png", NORTH);
