@@ -96,7 +96,7 @@ public class Main extends JPanel{
                     if (screen == 1) {
                         if (mousex > 810 && mousex < 890 && mousey > 28 && mousey < 95) {
                             carr=pics[0][0];
-                            carried=new SimpleTower(mousex,mousey,pics[0][0],62);
+                            carried=new SimpleTower(mousex,mousey,pics[0][0],50);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -104,7 +104,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
                             carr=pics[0][1];
-                            carried=new Tower(mousex,mousey,pics[0][1],62, 20);
+                            carried=new Tower(mousex,mousey,pics[0][1],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -112,7 +112,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 105 && mousey < 180) {
                             carr=pics[1][0];
-                            carried=new Pikachu(mousex,mousey,pics[1][0],62);
+                            carried=new Pikachu(mousex,mousey,pics[1][0],50);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -120,7 +120,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 105 && mousey < 180) {
                             carr=pics[1][1];
-                            carried=new Squirtle(mousex,mousey,pics[1][1],62);
+                            carried=new Squirtle(mousex,mousey,pics[1][1],50);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -128,7 +128,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
-                            carried=new Tower(mousex,mousey,pics[2][0],62, 20);
+                            carried=new Tower(mousex,mousey,pics[2][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -136,7 +136,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
                             carr=pics[2][1];
-                            carried=new Tower(mousex,mousey,pics[2][1],62, 20);
+                            carried=new Tower(mousex,mousey,pics[2][1],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -144,7 +144,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
                             carr=pics[3][0];
-                            carried=new Tower(mousex,mousey,pics[3][0],62, 20);
+                            carried=new Tower(mousex,mousey,pics[3][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -152,7 +152,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
                             carr=pics[3][1];
-                            carried=new Kirby(mousex,mousey,pics[3][1],62);
+                            carried=new Kirby(mousex,mousey,pics[3][1],50);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -160,7 +160,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
                             carr=pics[4][0];
-                            carried=new Tower(mousex,mousey,pics[4][0],62, 20);
+                            carried=new Tower(mousex,mousey,pics[4][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -168,7 +168,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new Tower(mousex,mousey,pics[4][1],62, 20);
+                            carried=new Tower(mousex,mousey,pics[4][1],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -176,7 +176,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
-                            carried=new Tower(mousex,mousey,pics[5][0],62, 20);
+                            carried=new Tower(mousex,mousey,pics[5][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -184,7 +184,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
                             carr=pics[5][1];
-                            carried=new Tower(mousex,mousey,pics[5][1],62,20);
+                            carried=new Tower(mousex,mousey,pics[5][1],50,20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -360,7 +360,7 @@ public class Main extends JPanel{
                         count = 0;
                         counter++;
                     }
-                    if(counter >= maxCounter && enemy.size() == 0){
+                    if(counter >= maxCounter*wave/2 && enemy.size() == 0){
                         timer.stop();
                         wave++;
                         counter = 0;
@@ -404,13 +404,12 @@ public class Main extends JPanel{
         if(car){
             g2.drawImage(carr,mousex-20,mousey-20,null);
         }
-        for(Projectile p: pro){
-            p.draw(g2);
-        }
         for (Tower t: towers){
             t.draw(g2);
         }
-
+        for(Projectile p: pro){
+            p.draw(g2);
+        }
         if(health <= 0){
             timer.stop();
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));

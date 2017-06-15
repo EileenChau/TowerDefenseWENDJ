@@ -14,15 +14,11 @@ public class Squirtle extends Tower {
 
     public Squirtle(int x, int y, BufferedImage pic, int r){
         super(x,y,pic,r, 20);
-        x2=x;
-        y2=y;
-        radius=r;
-        range=r;
         setPic("Squirtle.png");
         this.setShootnum(0);
         //this.setPic("MarioP.png");
         //        this.setPro();
-        this.setRange(300);
+        setRange(300);
     }
     @Override
     public boolean check(int x, int y, Tile[][] tiles) {
@@ -52,10 +48,9 @@ public class Squirtle extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<range){
+                if(dists[i]<getRange()){
                     least =dists[i];
                     index=i;
-                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -67,9 +62,8 @@ public class Squirtle extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            WaterBomb p = new WaterBomb(x2,y2,0,en);
+            WaterBomb p = new WaterBomb(getX2(),getY2(),0,en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-            System.out.println(least);
             pr.add(p);
         }
 

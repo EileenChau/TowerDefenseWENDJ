@@ -36,7 +36,7 @@ public class Projectile extends Sprite{
 
     @Override
     public void update(){
-       int dir= w.getDirection(this.getLoc(),en.getLoc());
+        int dir= w.getDirection(this.getLoc(),en.getLoc());
         this.setDir(dir);
         super.update();
 
@@ -58,8 +58,6 @@ public class Projectile extends Sprite{
             }
         }
     }
-
-
 
 //    public boolean hit(Sprite other){
 //        if(intersects(other) == true){

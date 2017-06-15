@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/1/17.
  */
 public class Tower {
-    int x2, y2, radius, range;
-    BufferedImage pic;
-    Projectile pro;
-    int shootnum;
-    int shootCount=1;
-    int price;
+    private int x2, y2, radius, range;
+    private BufferedImage pic;
+    private Projectile pro;
+    private int shootnum;
+    private int shootCount=1;
+    private int price;
 
     public Tower(int x, int y, BufferedImage pic, int r, int p) {
         x2 = x;
@@ -92,7 +92,6 @@ public class Tower {
     public int getPrice(){
         return price;
     }
-
 
     public int getRadius() {
         return radius;
