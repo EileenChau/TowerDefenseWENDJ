@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
+    private int count2=0;
     private ArrayList<Projectile> pro;
     private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
@@ -94,7 +95,7 @@ public class Main extends JPanel{
                     if (screen == 1) {
                         if (mousex > 810 && mousex < 890 && mousey > 28 && mousey < 95) {
                             carr=pics[0][0];
-                            carried=new SimpleTower(mousex,mousey,pics[0][0],62);
+                            carried=new SimpleTower(mousex,mousey,pics[0][0],300);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
@@ -227,9 +228,9 @@ public class Main extends JPanel{
                         }
                     }
                     if(t instanceof SimpleTower ){
-                        //if (t.Shootable()){
+                        if (t.Shootable()){
                             ((SimpleTower) t).Shoot(pro,enemy);
-                       // }
+                        }
 
                     }
                 }
@@ -308,6 +309,11 @@ public class Main extends JPanel{
                 }
 
              repaint();
+                if(count2%8==0){
+                    alive(pro);
+                }
+                count2++;
+
             }
         });
         timer.start();
@@ -469,6 +475,14 @@ public class Main extends JPanel{
         enemyDead = false;
         makeMap();
         timer.restart();
+    }
+    public void alive(ArrayList<Projectile> pr){
+        for (int i = 0; i < pr.size(); i++) {
+            if(pr.get(i).alive()){
+                pr.remove(i);
+            }
+        }
+
     }
 
     public static void main(String[] args) {

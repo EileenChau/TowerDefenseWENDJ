@@ -19,7 +19,7 @@ public class Squirtle extends Tower {
         pic=image;
         radius=r;
         range=r;
-        this.setShootnum(0);
+        this.setShootnum(5);
         //this.setPic("MarioP.png");
         //        this.setPro();
         this.setRange(300);
@@ -53,6 +53,8 @@ public class Squirtle extends Tower {
         double least=-1;
         for(Enemy e: enemies){
             dists[count]=this.getdistance(e.getLoc().x,e.getLoc().y);
+            System.out.println(dists[count]);
+
             count++;
         }
         for (int i = 0; i <dists.length ; i++) {
@@ -60,7 +62,6 @@ public class Squirtle extends Tower {
                 if(dists[i]<range){
                     least =dists[i];
                     index=i;
-                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -74,7 +75,6 @@ public class Squirtle extends Tower {
             en=enemies.get(index);
             WaterBomb p = new WaterBomb(x2,y2,0, en, wat);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-            System.out.println(least);
             pr.add(p);
         }
 

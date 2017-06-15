@@ -11,7 +11,7 @@ public class Tower {
     int x2, y2, radius, range;
     BufferedImage pic;
     Projectile pro;
-    int shootnum;
+    int shootnum=2;
     int shootCount=1;
 
     public Tower(int x, int y, BufferedImage image, int r) {
@@ -33,7 +33,7 @@ public class Tower {
         return Math.sqrt((one * one) + (two * two));
     }
     public boolean Shootable(){
-        if(shootnum%shootCount==0){
+        if(shootCount%shootnum==0){
             shootCount++;
             return true;
         }
@@ -65,6 +65,7 @@ public class Tower {
     public BufferedImage getPic() {
         return pic;
     }
+
 
     public void setPic(String fileName) {
         try {

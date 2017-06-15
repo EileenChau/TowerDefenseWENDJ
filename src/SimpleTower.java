@@ -20,7 +20,8 @@ public class SimpleTower extends Tower {
         range=r;
         this.setPic("Mario.png");
         //        this.setPro();
-        this.setRange(200);
+        this.setShootnum(2);
+        this.setRange(300);
         try {
             bul= ImageIO.read(new File("res/Mario Fireball.png" ));
         } catch (Exception e) {
@@ -30,21 +31,25 @@ public class SimpleTower extends Tower {
 
     public void Shoot(ArrayList<Projectile> bullets,ArrayList<Enemy> enemies){
         Enemy en;
+        //System.out.println("this is called on");
         double[]dists= new double[enemies.size()];
         int count=0;
         int index=-1;
         double least=-1;
         for(Enemy e: enemies){
-            dists[count]=this.getdistance(e.getLoc().x,e.getLoc().y);
+            dists[count]=e.getLoc().distance((double)this.x2,(double)(this.y2));
+
             count++;
         }
         for (int i = 0; i <dists.length ; i++) {
-            if (i==0){
-                if(dists[i]<range){
-                    least =dists[i];
-                    index=i;
+            System.out.println(range);
+            if (i==0) {
+                if (dists[i] < range) {
+                    least = dists[i];
+                    index = i;
                 }
-            }else {
+            }
+            else {
                 if(dists[i]<least){
                     least=dists[i];
                     index=i;
@@ -52,11 +57,12 @@ public class SimpleTower extends Tower {
 
             }
         }
-        if(least!=-1){
+        if(index!=-1){
             en=enemies.get(index);
             Fireball p = new Fireball(x2,y2,0, en, bul);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             bullets.add(p);
+            System.out.println("its made");
         }
 
     }
