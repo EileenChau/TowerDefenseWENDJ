@@ -8,7 +8,7 @@ public class Pikachu extends Tower {
 
     int radius, range;
     public Pikachu(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r, 20);
+        super(x,y,image,r);
         radius=r;
         range=r;
         setShootnum(0);

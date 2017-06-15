@@ -1,4 +1,7 @@
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.*;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -6,19 +9,30 @@ import java.util.ArrayList;
  */
 public class Squirtle extends Tower {
     ArrayList<WaterBomb> pop=new ArrayList<WaterBomb>();
+    BufferedImage wat;
     int shootNum;
 
     public Squirtle(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r, 20);
+        super(x,y,image,r);
+        x2=x;
+        y2=y;
+        pic=image;
         radius=r;
         range=r;
-        setShootnum(0);
+        this.setShootnum(0);
         //this.setPic("MarioP.png");
         //        this.setPro();
-        setRange(300);
+        this.setRange(300);
+        try {
+            wat=ImageIO.read(new File("res/Waterblast.png" ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public boolean check(int x, int y, Tile[][] tiles) {
+        int sx=x/50;
+        int sy=y/50;
         Tile spot = tiles[((y+31) / 50)][((x+31) / 50)];
 
         if (spot instanceof LandTile || spot instanceof RoadTile) {
@@ -46,7 +60,7 @@ public class Squirtle extends Tower {
                 if(dists[i]<range){
                     least =dists[i];
                     index=i;
-//                    System.out.println("ye");
+                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -58,9 +72,9 @@ public class Squirtle extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            WaterBomb p = new WaterBomb(getX2(),getY2(),0,en);
+            WaterBomb p = new WaterBomb(x2,y2,0, en, wat);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-//            System.out.println(least);
+            System.out.println(least);
             pr.add(p);
         }
 

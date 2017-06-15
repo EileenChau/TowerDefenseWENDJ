@@ -4,7 +4,7 @@
 public class AirBoomarang extends Projectile {
 
     public AirBoomarang(int x, int y, int dir, Enemy e) {
-        super(x, y, dir, 5, e);
+        super(x, y, dir, 5,e);
         setSpeed(30);
         setPic("AirBoomarang.png", NORTH);
     }

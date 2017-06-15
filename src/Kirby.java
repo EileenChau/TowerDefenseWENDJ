@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Kirby extends Tower {
     int radius, range;
     public Kirby(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r, 20);
+        super(x,y,image,r);
         radius=r;
         range=r;
         setShootnum(0);
