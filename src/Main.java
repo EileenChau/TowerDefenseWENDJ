@@ -168,11 +168,8 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new BananaBomb(mousex,mousey,pics[4][1]);
-                            if(money >= carried.getPrice()) {
-                                money -= carried.getPrice();
-                                car = true;
-                            }
+                            carried=new BananaBomb(mousex,mousey,pics[4][1], 10, 20);
+                            car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
@@ -341,9 +338,56 @@ public class Main extends JPanel{
                     }
                 }
                 count2++;
+// hi
+                for (int i = 0; i < towers.size(); i++) {
+                    if(towers.get(i) instanceof BananaBomb){
+                        for (int j = 0; j < enemy.size(); j++) {
+                            if(towers.get(i).hit(enemy.get(i)) == true){
 
-                for(Projectile p: pro){
-                p.update();
+                                enemy.remove(j);
+                                towers.remove(i);
+                                j = enemy.size();
+                                i--;
+
+
+                            }
+                        }
+                    }
+                }
+
+
+
+//                for (Projectile p: pro){
+//                    for (Enemy e: enemy){
+//                        if(e.intersects(p));
+//                        e.setHealth(e.getHealth()-100);
+//                    }
+//                }
+//                for (int i = 0; i < pro.size(); i++) {
+//                    for (int j = 0; j <enemy.size() ; j++) {
+//                        if(pro.get(i).intersects(enemy.get(j))){
+//                            pro.remove(i);
+//                        }
+//
+//                    }
+//
+//                }
+//                for (Enemy e: enemy){
+//                    if(e.getHealth()<1){
+//                        enemy.remove(e);
+//                    }
+//                }
+
+                count++;
+                if(count > maxCount) {
+                    int rand = (int)(Math.random()*2);
+                    if(rand == 0) {
+                        enemy.add(new Enemy(tiles));
+                    }
+                    else {
+                        enemy.add(new BlueShroom(tiles));
+                    }
+                    count = 0;
                 }
 
                 for (int e = 0; e < enemy.size(); e++) {

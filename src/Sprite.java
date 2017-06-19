@@ -249,7 +249,5 @@ public class Sprite {
         return speed;
     }
 
-    public void remove(){
 
-    }
 }
