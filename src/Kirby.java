@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Created by eileen_chau on 6/14/17.
  */
 public class Kirby extends Tower {
-    public Kirby(int x, int y, BufferedImage pic, int r){
-        super(x,y,pic,r, 20);
+    public Kirby(int x, int y, BufferedImage pic){
+        super(x,y,pic,300, 20);
         setPic("Kirby.png");
         //        this.setPro();
         setRange(300);

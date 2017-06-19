@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by eileen_chau on 6/14/17.
  */
 public class Pikachu extends Tower {
-    public Pikachu(int x, int y, BufferedImage pic, int r){
-        super(x,y,pic,r,20);
+    public Pikachu(int x, int y, BufferedImage pic){
+        super(x,y,pic,300,20);
         setPic("Pikachu.png");
         //        this.setPro();
         setRange(300);

@@ -11,10 +11,9 @@ public class DonkeyKong extends Tower {
     BufferedImage wat;
     private int shootNum;
     private int price;
-    public DonkeyKong(int x, int y, BufferedImage pic, int r) {
-        super(x, y, pic, r, 20);
+    public DonkeyKong(int x, int y, BufferedImage pic) {
+        super(x, y, pic, 300, 20);
         wat=pic;
-        setRange(r);
         this.setShootnum(10);
         this.setPic("Donkey Kong.png");
         //this.setPic("MarioP.png");

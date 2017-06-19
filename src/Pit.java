@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/19/17.
  */
 public class Pit extends Tower {
-    public Pit(int x, int y, BufferedImage pic, int r) {
-        super(x, y, pic, r, 20);
+    public Pit(int x, int y, BufferedImage pic) {
+        super(x, y, pic, 300, 20);
         this.setPic("Pit.png");
         this.setShootnum(10);
     }

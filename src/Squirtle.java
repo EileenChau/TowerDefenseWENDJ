@@ -12,8 +12,8 @@ public class Squirtle extends Tower {
     ArrayList<WaterBomb> pop=new ArrayList<WaterBomb>();
     int shootNum;
 
-    public Squirtle(int x, int y, BufferedImage pic, int r){
-        super(x,y,pic,r, 20);
+    public Squirtle(int x, int y, BufferedImage pic){
+        super(x,y,pic,300, 20);
         setPic("Squirtle.png");
         //this.setPic("MarioP.png");
         //        this.setPro();

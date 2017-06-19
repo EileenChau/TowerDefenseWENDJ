@@ -9,11 +9,10 @@ import java.util.ArrayList;
  */
 // I think this will be the mario Tower
 public class SimpleTower extends Tower {
-    public SimpleTower(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r, 20);
+    public SimpleTower(int x, int y, BufferedImage image){
+        super(x,y,image,300, 20);
         setPic("Mario.png");
         //        this.setPro();
-        setRange(300);
         setShootnum(5);
     }
 
