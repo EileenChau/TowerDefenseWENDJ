@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
+    private BufferedImage backg;
     private ArrayList<Projectile> pro;
     private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
@@ -63,6 +64,8 @@ public class Main extends JPanel{
             pics[4][1] = ImageIO.read(new File("res/Banana Peel.png" ));
             pics[5][0] = ImageIO.read(new File("res/Samus.png" ));
             pics[5][1] = ImageIO.read(new File("res/Pit.png" ));
+            backg= ImageIO.read(new File("res/BackgroundTD.png" ));
+
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
@@ -434,6 +437,8 @@ public class Main extends JPanel{
             } else {
                 play = Color.black;
             }
+            g2.drawImage(backg,0,0,backg.getWidth(),backg.getHeight(),null);
+
 
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
             g2.setColor(Color.black);
