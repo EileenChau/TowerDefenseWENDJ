@@ -16,11 +16,11 @@ public class DonkeyKong extends Tower {
         wat=pic;
         setRange(r);
         price =p;
-        this.setShootnum(10);
+        this.setShootnum(11);
         this.setPic("Donkey Kong.png");
         //this.setPic("MarioP.png");
         //        this.setPro();
-        this.setRange(300);
+        this.setRange(500);
         try {
             wat= ImageIO.read(new File("res/Barrel.png" ));
         } catch (Exception e) {
