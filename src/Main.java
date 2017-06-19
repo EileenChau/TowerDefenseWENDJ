@@ -130,7 +130,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
-                            carried=new Yoshi(mousex,mousey,pics[2][0],300,20);
+                            carried=new Yoshi(mousex,mousey,pics[2][0],300);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -138,13 +138,13 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
                             carr=pics[2][1];
-                            carried=new Link(mousex,mousey,pics[2][1],300,20);
+                            carried=new Link(mousex,mousey,pics[2][1],300);
                             money -= carried.getPrice();
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
                             carr=pics[3][0];
-                            carried=new Lucario(mousex,mousey,pics[3][0],300,20);
+                            carried=new Lucario(mousex,mousey,pics[3][0],300);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -184,7 +184,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
                             carr=pics[5][1];
-                            carried=new Pit(mousex,mousey,pics[5][1],300,20);
+                            carried=new Pit(mousex,mousey,pics[5][1],300);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -492,7 +492,6 @@ public class Main extends JPanel{
         g2.drawString("Cost: " + 20, 920, 455);
         g2.drawString("Cost: " + 20, 825, 545);
         g2.drawString("Cost: " + 20, 920, 545);
-        System.out.println();
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -600,6 +599,7 @@ public class Main extends JPanel{
         enemyDead = false;
         size = 50;
         wave = 1;
+        screen = 0;
         makeMap();
         timer.restart();
     }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/19/17.
  */
 public class Link extends Tower {
-    public Link(int x, int y, BufferedImage pic, int r, int p) {
-        super(x, y, pic, r, p);
+    public Link(int x, int y, BufferedImage pic, int r) {
+        super(x, y, pic, r, 20);
         this.setPic("Link.png");
         this.setRange(150);
     }

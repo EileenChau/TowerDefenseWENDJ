@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/19/17.
  */
 public class Lucario extends Tower {
-    public Lucario(int x, int y, BufferedImage pic, int r, int p) {
-        super(x, y, pic, r, p);
+    public Lucario(int x, int y, BufferedImage pic, int r) {
+        super(x, y, pic, r, 20);
         this.setPic("Lucario.png");
         this.setShootnum(10);
     }
