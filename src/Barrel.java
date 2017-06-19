@@ -5,5 +5,6 @@ public class Barrel extends Projectile {
     public Barrel(int x, int y, int dir, int damage, Enemy e) {
         super(x, y, dir, damage, e);
         this.setPic("Barrel.png",NORTH);
+        this.setSpeed(35);
     }
 }

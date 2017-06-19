@@ -5,9 +5,10 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/19/17.
  */
 public class Link extends Tower {
-    public Link(int x, int y, BufferedImage pic, int r, int p) {
-        super(x, y, pic, r, p);
+    public Link(int x, int y, BufferedImage pic, int r) {
+        super(x, y, pic, r, 20);
         this.setPic("Link.png");
+        this.setRange(150);
     }
     public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets) {
         Enemy en;
@@ -21,7 +22,7 @@ public class Link extends Tower {
         }
         for (int i = 0; i < dists.length; i++) {
             if (i == 0) {
-                if (dists[i] < range) {
+                if (dists[i] < getRange()) {
                     least = dists[i];
                     index = i;
 //                    System.out.println("ye");

@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/19/17.
  */
 public class Lucario extends Tower {
-    public Lucario(int x, int y, BufferedImage pic, int r, int p) {
-        super(x, y, pic, r, p);
+    public Lucario(int x, int y, BufferedImage pic, int r) {
+        super(x, y, pic, r, 20);
         this.setPic("Lucario.png");
         this.setShootnum(10);
     }
@@ -24,7 +24,7 @@ public class Lucario extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<range){
+                if(dists[i]<getRange()){
                     least =dists[i];
                     index=i;
                 }
@@ -38,7 +38,7 @@ public class Lucario extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            PlasmaBall p = new PlasmaBall(x2,y2,0, en);
+            PlasmaBall p = new PlasmaBall(getX2(),getY2(),0, en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             pr.add(p);
         }

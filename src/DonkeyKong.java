@@ -11,14 +11,10 @@ public class DonkeyKong extends Tower {
     BufferedImage wat;
     private int shootNum;
     private int price;
-    public DonkeyKong(int x, int y, BufferedImage pic, int r, int p) {
-        super(x, y, pic, r, p);
-        x2=x;
-        y2=y;
+    public DonkeyKong(int x, int y, BufferedImage pic, int r) {
+        super(x, y, pic, r, 20);
         wat=pic;
-        radius=r;
-        range=r;
-        price =p;
+        setRange(r);
         this.setShootnum(10);
         this.setPic("Donkey Kong.png");
         //this.setPic("MarioP.png");
@@ -45,7 +41,7 @@ public class DonkeyKong extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<range){
+                if(dists[i]<getRange()){
                     least =dists[i];
                     index=i;
                 }
@@ -59,7 +55,7 @@ public class DonkeyKong extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            Barrel p = new Barrel(x2,y2,0,0, en);
+            Barrel p = new Barrel(getX2(),getY2(),0,0, en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             pr.add(p);
         }

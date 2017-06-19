@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by samuel_wolff on 6/19/17.
  */
 public class Yoshi extends Tower {
-    public Yoshi(int x, int y, BufferedImage pic, int r, int p) {
-        super(x, y, pic, r, p);
+    public Yoshi(int x, int y, BufferedImage pic, int r) {
+        super(x, y, pic, r, 20);
         this.setShootnum(10);
         this.setPic("Yoshi.png");
     }
@@ -22,7 +22,7 @@ public class Yoshi extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<range){
+                if(dists[i]<getRadius()){
                     least =dists[i];
                     index=i;
 //                    System.out.println("ye");

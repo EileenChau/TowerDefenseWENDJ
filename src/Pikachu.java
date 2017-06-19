@@ -5,16 +5,11 @@ import java.util.ArrayList;
  * Created by eileen_chau on 6/14/17.
  */
 public class Pikachu extends Tower {
-
-    int radius, range;
     public Pikachu(int x, int y, BufferedImage pic, int r){
-        super(x,y,pic, r,20);
-        radius=r;
-        range=r;
-        setShootnum(10);
+        super(x,y,pic,r,20);
         setPic("Pikachu.png");
         //        this.setPro();
-        setRange(200);
+        setRange(300);
     }
 
     public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets) {
@@ -29,7 +24,7 @@ public class Pikachu extends Tower {
         }
         for (int i = 0; i < dists.length; i++) {
             if (i == 0) {
-                if (dists[i] < range) {
+                if (dists[i] < getRadius()) {
                     least = dists[i];
                     index = i;
 //                    System.out.println("ye");
