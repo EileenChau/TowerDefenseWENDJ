@@ -548,7 +548,6 @@ public class Main extends JPanel{
 
         panel.setFocusable(true);
         panel.grabFocus();
-        System.out.println();
         window.add(panel);
         window.setVisible(true);
         window.setResizable(false);
