@@ -8,6 +8,7 @@ public class Link extends Tower {
     public Link(int x, int y, BufferedImage pic, int r, int p) {
         super(x, y, pic, r, p);
         this.setPic("Link.png");
+        this.setRange(150);
     }
     public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets) {
         Enemy en;
