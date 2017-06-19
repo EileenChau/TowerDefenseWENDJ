@@ -104,7 +104,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
                             carr=pics[0][1];
-                            carried=new Tower(mousex,mousey,pics[0][1],50, 20);
+                            carried=new DonkeyKong(mousex,mousey,pics[0][1],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -128,7 +128,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
-                            carried=new Tower(mousex,mousey,pics[2][0],50, 20);
+                            carried=new Yoshi(mousex,mousey,pics[2][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -136,7 +136,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
                             carr=pics[2][1];
-                            carried=new Tower(mousex,mousey,pics[2][1],50, 20);
+                            carried=new Link(mousex,mousey,pics[2][1],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -144,7 +144,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
                             carr=pics[3][0];
-                            carried=new Tower(mousex,mousey,pics[3][0],50, 20);
+                            carried=new Lucario(mousex,mousey,pics[3][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -168,7 +168,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new Tower(mousex,mousey,pics[4][1],50, 20);
+                            carried=new BananaBomb(mousex,mousey,pics[4][1]);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -176,7 +176,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
-                            carried=new Tower(mousex,mousey,pics[5][0],50, 20);
+                            carried=new Samus(mousex,mousey,pics[5][0],50, 20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -184,7 +184,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
                             carr=pics[5][1];
-                            carried=new Tower(mousex,mousey,pics[5][1],50,20);
+                            carried=new Pit(mousex,mousey,pics[5][1],50,20);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -326,7 +326,7 @@ public class Main extends JPanel{
                 if(start) {
                     count++;
                     if (count > maxCount-wave/10 && counter < maxCounter*wave/2) {
-                        int rand = (int) (Math.random() * wave/5);
+                        int rand = (int) (Math.random() * wave/2);
                         if (rand == 0) {
                             enemy.add(new Enemy(tiles));
                         }

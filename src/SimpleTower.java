@@ -15,10 +15,10 @@ public class SimpleTower extends Tower {
         setPic("Mario.png");
         //        this.setPro();
         setRange(300);
-        shootnum=5;
+        setShootnum(5);
     }
 
-    public void Shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
+    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
         Enemy en;
         double[]dists= new double[enemies.size()];
         int count=0;

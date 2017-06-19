@@ -21,7 +21,7 @@ public class Link extends Tower {
         }
         for (int i = 0; i < dists.length; i++) {
             if (i == 0) {
-                if (dists[i] < range) {
+                if (dists[i] < getRange()) {
                     least = dists[i];
                     index = i;
 //                    System.out.println("ye");
