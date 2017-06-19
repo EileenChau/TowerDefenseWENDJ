@@ -19,6 +19,7 @@ public class Main extends JPanel{
     private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
     private Timer timer;
+    private int count2=0;
     private ArrayList<Enemy> enemy;
     private boolean car;
     private Tower carried;
@@ -94,47 +95,47 @@ public class Main extends JPanel{
                     if (screen == 1) {
                         if (mousex > 810 && mousex < 890 && mousey > 28 && mousey < 95) {
                             carr=pics[0][0];
-                            carried=new SimpleTower(mousex,mousey,pics[0][0],62);
+                            carried=new SimpleTower(mousex,mousey,pics[0][0],300);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
                             carr=pics[0][1];
-                            carried=new Tower(mousex,mousey,pics[0][1],62);
+                            carried=new DonkeyKong(mousex,mousey,pics[0][1],300,20);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 105 && mousey < 180) {
                             carr=pics[1][0];
-                            carried=new Tower(mousex,mousey,pics[1][0],62);
+                            carried=new Pikachu(mousex,mousey,pics[1][0],300);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 105 && mousey < 180) {
                             carr=pics[1][1];
-                            carried=new Squirtle(mousex,mousey,pics[1][1],62);
+                            carried=new Squirtle(mousex,mousey,pics[1][1],300,20);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 190 && mousey < 265) {
                             carr=pics[2][0];
-                            carried=new Tower(mousex,mousey,pics[2][0],62);
+                            carried=new Yoshi(mousex,mousey,pics[2][0],300,20);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 190 && mousey < 265) {
                             carr=pics[2][1];
-                            carried=new Tower(mousex,mousey,pics[2][1],62);
+                            carried=new Link(mousex,mousey,pics[2][1],300,20);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 275 && mousey < 350) {
                             carr=pics[3][0];
-                            carried=new Tower(mousex,mousey,pics[3][0],62);
+                            carried=new Lucario(mousex,mousey,pics[3][0],300,20);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 275 && mousey < 350) {
                             carr=pics[3][1];
-                            carried=new Tower(mousex,mousey,pics[3][1],62);
+                            carried=new Kirby(mousex,mousey,pics[3][1],300);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 360 && mousey < 435) {
                             carr=pics[4][0];
-                            carried=new Tower(mousex,mousey,pics[4][0],62);
+                            carried=new Tower(mousex,mousey,pics[4][0],300,20);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
@@ -144,12 +145,12 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
-                            carried=new Tower(mousex,mousey,pics[5][0],62);
+                            carried=new Samus(mousex,mousey,pics[5][0],300,20);
                             car = true;
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 445 && mousey < 520) {
                             carr=pics[5][1];
-                            carried=new Tower(mousex,mousey,pics[5][1],62);
+                            carried=new Pit(mousex,mousey,pics[5][1],300,20);
                             car = true;
                         }
                     }
@@ -227,13 +228,76 @@ public class Main extends JPanel{
                         }
                     }
                     if(t instanceof SimpleTower ){
-                        //if (t.Shootable()){
-                            ((SimpleTower) t).Shoot(pro,enemy);
-                       // }
+                        if (t.Shootable()){
+                            ((SimpleTower) t).Shoot(enemy,pro);
+                        }
+
+                    }
+                    if(t instanceof DonkeyKong ){
+                        if (t.Shootable()){
+                            ((DonkeyKong) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Yoshi ){
+                        if (t.Shootable()){
+                            ((Yoshi) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Pikachu ){
+                        if (t.Shootable()){
+                            ((Pikachu) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Kirby ){
+                        if (t.Shootable()){
+                            ((Kirby) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Link ){
+                        if (t.Shootable()){
+                            ((Link) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Samus ){
+                        if (t.Shootable()){
+                            ((Samus) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Pit ){
+                        if (t.Shootable()){
+                            ((Pit) t).shoot(enemy,pro);
+
+                        }
+
+                    }
+                    if(t instanceof Lucario ){
+                        if (t.Shootable()){
+                            ((Lucario) t).shoot(enemy,pro);
+
+                        }
 
                     }
                 }
-
+                if(count2%6==0){
+                    for (int i = 0; i <pro.size() ; i++) {
+                        if(pro.get(i).alive()){
+                            pro.remove(i);
+                        }
+                    }
+                }
+                count2++;
 //                for(Tower t: towers){
 //                    if(t instanceof BananaBomb){
 //                        for(Enemy e: enemy){

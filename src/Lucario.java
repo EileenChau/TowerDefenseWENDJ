@@ -1,23 +1,16 @@
-import java.awt.image.BufferedImage;
-import java.nio.Buffer;
+import java.awt.image.*;
 import java.util.ArrayList;
 
 /**
- * Created by eileen_chau on 6/14/17.
+ * Created by samuel_wolff on 6/19/17.
  */
-public class Kirby extends Tower {
-    int radius, range;
-    public Kirby(int x, int y, BufferedImage pic, int r){
-        super(x,y,pic,r, 20);
-        radius=r;
-        range=r;
-        setShootnum(10);
-        setPic("Kirby.png");
-        //        this.setPro();
-        setRange(200);
+public class Lucario extends Tower {
+    public Lucario(int x, int y, BufferedImage pic, int r, int p) {
+        super(x, y, pic, r, p);
+        this.setPic("Lucario.png");
+        this.setShootnum(10);
     }
-
-    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
+    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> pr){
         Enemy en;
         double[]dists= new double[enemies.size()];
         int count=0;
@@ -25,6 +18,8 @@ public class Kirby extends Tower {
         double least=-1;
         for(Enemy e: enemies){
             dists[count]=this.getdistance(e.getLoc().x,e.getLoc().y);
+            System.out.println(dists[count]);
+
             count++;
         }
         for (int i = 0; i <dists.length ; i++) {
@@ -32,7 +27,6 @@ public class Kirby extends Tower {
                 if(dists[i]<range){
                     least =dists[i];
                     index=i;
-//                    System.out.println("ye");
                 }
             }else {
                 if(dists[i]<least){
@@ -44,9 +38,10 @@ public class Kirby extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            AirBoomarang p = new AirBoomarang(getX2(),getY2(),0,en);
+            PlasmaBall p = new PlasmaBall(x2,y2,0, en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
-            bullets.add(p);
+            pr.add(p);
         }
+
     }
 }

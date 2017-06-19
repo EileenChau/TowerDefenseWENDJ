@@ -6,7 +6,7 @@ public class WhiteShroom extends Enemy{
     public WhiteShroom(Tile[][] arr){
         super(arr);
         setPic("WhiteShroom.png", NORTH);
-        setHealth(6);
+        setHealth(300);
         setSpeed(7);
     }
 }
