@@ -492,6 +492,7 @@ public class Main extends JPanel{
         g2.drawString("Cost: " + 20, 920, 455);
         g2.drawString("Cost: " + 20, 825, 545);
         g2.drawString("Cost: " + 20, 920, 545);
+        System.out.println();
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
