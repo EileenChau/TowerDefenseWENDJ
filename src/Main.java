@@ -140,7 +140,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new BananaBomb(mousex,mousey,pics[4][1]);
+                            carried=new BananaBomb(mousex,mousey,pics[4][1], 10, 20);
                             car = true;
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
@@ -298,18 +298,22 @@ public class Main extends JPanel{
                     }
                 }
                 count2++;
-//                for(Tower t: towers){
-//                    if(t instanceof BananaBomb){
-//                        for(Enemy e: enemy){
-//                            if(t.hit(e) == true){
-//
-//
-//                            }
-//                        }
-//                    }
-//
-//                }
 
+                for (int i = 0; i < towers.size(); i++) {
+                    if(towers.get(i) instanceof BananaBomb){
+                        for (int j = 0; j < enemy.size(); j++) {
+                            if(towers.get(i).hit(enemy.get(i)) == true){
+
+                                enemy.remove(j);
+                                towers.remove(i);
+                                j = enemy.size();
+                                i--;
+
+
+                            }
+                        }
+                    }
+                }
 
 
 

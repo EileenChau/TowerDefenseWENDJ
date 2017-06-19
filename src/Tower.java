@@ -43,6 +43,13 @@ public class Tower {
             return false;
         }
     }
+    public boolean hit(Enemy e){
+        if(this.getdistance(e.getLoc().x, e.getLoc().x) <= radius){
+            return true;
+
+        }
+        return false;
+    }
 
     public void draw(Graphics2D g2) {
         g2.drawImage(pic, x2, y2, pic.getWidth(), pic.getHeight(), null);
