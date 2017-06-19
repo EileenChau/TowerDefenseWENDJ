@@ -9,19 +9,16 @@ import java.util.ArrayList;
  */
 // I think this will be the mario Tower
 public class SimpleTower extends Tower {
-    int radius, range;
     public SimpleTower(int x, int y, BufferedImage image, int r){
         super(x,y,image,r, 20);
-        radius=r;
-        range=r;
         setShootnum(0);
         setPic("Mario.png");
         //        this.setPro();
         setRange(300);
-        shootnum=5;
+        setShootnum(5);
     }
 
-    public void Shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
+    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
         Enemy en;
         double[]dists= new double[enemies.size()];
         int count=0;
@@ -33,7 +30,7 @@ public class SimpleTower extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<range){
+                if(dists[i]<getRange()){
                     least =dists[i];
                     index=i;
 //                    System.out.println("ye");

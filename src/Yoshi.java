@@ -22,7 +22,7 @@ public class Yoshi extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<range){
+                if(dists[i]<getRadius()){
                     least =dists[i];
                     index=i;
 //                    System.out.println("ye");
