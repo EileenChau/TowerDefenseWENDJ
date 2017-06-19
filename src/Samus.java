@@ -1,24 +1,16 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.image.*;
 import java.util.ArrayList;
 
 /**
- * Created by samuel_wolff on 6/2/17.
+ * Created by samuel_wolff on 6/19/17.
  */
-// I think this will be the mario Tower
-public class SimpleTower extends Tower {
-    public SimpleTower(int x, int y, BufferedImage image, int r){
-        super(x,y,image,r, 20);
-        setShootnum(0);
-        setPic("Mario.png");
-        //        this.setPro();
-        setRange(300);
-        shootnum=5;
+public class Samus extends Tower {
+    public Samus(int x, int y, BufferedImage pic, int r, int p) {
+        super(x, y, pic, r, p);
+        this.setPic("Samus.png");
+        this.setShootnum(10);
     }
-
-    public void Shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
+    public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets){
         Enemy en;
         double[]dists= new double[enemies.size()];
         int count=0;
@@ -30,7 +22,7 @@ public class SimpleTower extends Tower {
         }
         for (int i = 0; i <dists.length ; i++) {
             if (i==0){
-                if(dists[i]<getRange()){
+                if(dists[i]<range){
                     least =dists[i];
                     index=i;
 //                    System.out.println("ye");
@@ -45,7 +37,7 @@ public class SimpleTower extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            Fireball p = new Fireball(getX2(),getY2(),0,en);
+            PlasmaBall p = new PlasmaBall(getX2(),getY2(),0,en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             bullets.add(p);
         }

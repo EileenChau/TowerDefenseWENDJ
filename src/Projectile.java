@@ -12,6 +12,7 @@ public class Projectile extends Sprite{
     private int radius;
     private Enemy en;
     private BufferedImage pic;
+    private Point old=  new Point(0,0);
     private World w= new World(1000,800);
 
 
@@ -33,6 +34,23 @@ public class Projectile extends Sprite{
 //    public int getDamage(){
 //        return damage;
 //    }
+
+
+    public Enemy getEn() {
+        return en;
+    }
+
+    public void setEn(Enemy en) {
+        this.en = en;
+    }
+    public boolean alive(){
+        if(old==en.getLoc()){
+          return true;
+        }
+        else
+            old=en.getLoc();
+            return false;
+    }
 
     @Override
     public void update(){

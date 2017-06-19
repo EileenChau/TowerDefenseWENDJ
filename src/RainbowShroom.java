@@ -6,7 +6,7 @@ public class RainbowShroom extends Enemy{
     public RainbowShroom(Tile[][] arr){
         super(arr);
         setPic("RainbowShroom.png", NORTH);
-        setHealth(10);
+        setHealth(700);
         setSpeed(8);
     }
 }
