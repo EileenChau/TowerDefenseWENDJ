@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class SimpleTower extends Tower {
     public SimpleTower(int x, int y, BufferedImage image, int r){
         super(x,y,image,r, 20);
-        setShootnum(0);
         setPic("Mario.png");
         //        this.setPro();
         setRange(300);

@@ -15,7 +15,6 @@ public class Squirtle extends Tower {
     public Squirtle(int x, int y, BufferedImage pic, int r){
         super(x,y,pic,r, 20);
         setPic("Squirtle.png");
-        this.setShootnum(0);
         //this.setPic("MarioP.png");
         //        this.setPro();
         setRange(300);

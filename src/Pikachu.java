@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Pikachu extends Tower {
     public Pikachu(int x, int y, BufferedImage pic, int r){
         super(x,y,pic,r,20);
-        setShootnum(0);
         setPic("Pikachu.png");
         //        this.setPro();
         setRange(300);

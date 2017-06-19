@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Kirby extends Tower {
     public Kirby(int x, int y, BufferedImage pic, int r){
         super(x,y,pic,r, 20);
-        setShootnum(0);
         setPic("Kirby.png");
         //        this.setPro();
         setRange(300);

@@ -37,7 +37,7 @@ public class Samus extends Tower {
         }
         if(least!=-1){
             en=enemies.get(index);
-            PlasmaBall p = new PlasmaBall(getX2(),getY2(),0,en);
+            EnergyBall p = new EnergyBall(getX2(),getY2(),0,en);
             //p.setDir(p.getDirection(new Point(x2,y2),en.getLoc()));
             bullets.add(p);
         }
