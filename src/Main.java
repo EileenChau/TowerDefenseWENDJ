@@ -244,7 +244,7 @@ public class Main extends JPanel{
                         if (t.Shootable()){
                             ((Yoshi) t).shoot(enemy,pro);
 
-                        }
+                        }//southit alsdfkjaskdjlaf
 
                     }
                     if(t instanceof Pikachu ){
