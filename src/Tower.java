@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by samuel_wolff on 6/1/17.
  */
-public class Tower {
+public class Tower{
     int x2, y2, radius, range;
     BufferedImage pic;
     Projectile pro;
