@@ -16,7 +16,6 @@ public class Main extends JPanel{
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 800;
     private Tile[][] tiles;
     private ArrayList<Projectile> pro;
-    private ArrayList<Projectile> copy;
     private BufferedImage[][] pics = new BufferedImage[7][2];
     private Timer timer;
     private int count2=0;
@@ -107,7 +106,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 28 && mousey < 95) {
                             carr=pics[0][1];
-                            carried=new DonkeyKong(mousex,mousey,pics[0][1],300,20);
+                            carried=new DonkeyKong(mousex,mousey,pics[0][1],300);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -177,7 +176,7 @@ public class Main extends JPanel{
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
-                            carried=new Samus(mousex,mousey,pics[5][0],300,20);
+                            carried=new Samus(mousex,mousey,pics[5][0],300);
                             if(money >= carried.getPrice()) {
                                 money -= carried.getPrice();
                                 car = true;
@@ -473,12 +472,26 @@ public class Main extends JPanel{
         g2.setColor(Color.RED);
         g2.fillRect(850, 650, 100, 50);
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-        g2.setColor(Color.black);
+        g2.setColor(Color.BLACK);
         g2.drawString("Money: " + money, 825, 720);
         g2.drawString("Wave: " + wave, 825, 740);
         g2.drawString("Health: " + health, 825, 760);
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
         g2.drawString("Start Wave", 862, 680);
+
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        g2.drawString("Cost: " + 20, 825, 95);
+        g2.drawString("Cost: " + 20, 920, 95);
+        g2.drawString("Cost: " + 20, 825, 185);
+        g2.drawString("Cost: " + 20, 920, 185);
+        g2.drawString("Cost: " + 20, 825, 275);
+        g2.drawString("Cost: " + 20, 920, 275);
+        g2.drawString("Cost: " + 20, 825, 365);
+        g2.drawString("Cost: " + 20, 920, 365);
+        g2.drawString("Cost: " + 20, 825, 455);
+        g2.drawString("Cost: " + 20, 920, 455);
+        g2.drawString("Cost: " + 20, 825, 545);
+        g2.drawString("Cost: " + 20, 920, 545);
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
