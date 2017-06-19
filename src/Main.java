@@ -170,8 +170,11 @@ public class Main extends JPanel{
                         }
                         if (mousex > 910 && mousex < 990 && mousey > 360 && mousey < 435) {
                             carr=pics[4][1];
-                            carried=new BananaBomb(mousex,mousey,pics[4][1], 10, 20);
-                            car = true;
+                            carried=new BananaBomb(mousex,mousey,pics[4][1]);
+                            if(money >= carried.getPrice()) {
+                                money -= carried.getPrice();
+                                car = true;
+                            }
                         }
                         if (mousex > 810 && mousex < 890 && mousey > 445 && mousey < 520) {
                             carr=pics[5][0];
@@ -340,56 +343,9 @@ public class Main extends JPanel{
                     }
                 }
                 count2++;
-// hi
-                for (int i = 0; i < towers.size(); i++) {
-                    if(towers.get(i) instanceof BananaBomb){
-                        for (int j = 0; j < enemy.size(); j++) {
-                            if(towers.get(i).hit(enemy.get(i)) == true){
 
-                                enemy.remove(j);
-                                towers.remove(i);
-                                j = enemy.size();
-                                i--;
-
-
-                            }
-                        }
-                    }
-                }
-
-
-
-//                for (Projectile p: pro){
-//                    for (Enemy e: enemy){
-//                        if(e.intersects(p));
-//                        e.setHealth(e.getHealth()-100);
-//                    }
-//                }
-//                for (int i = 0; i < pro.size(); i++) {
-//                    for (int j = 0; j <enemy.size() ; j++) {
-//                        if(pro.get(i).intersects(enemy.get(j))){
-//                            pro.remove(i);
-//                        }
-//
-//                    }
-//
-//                }
-//                for (Enemy e: enemy){
-//                    if(e.getHealth()<1){
-//                        enemy.remove(e);
-//                    }
-//                }
-
-                count++;
-                if(count > maxCount) {
-                    int rand = (int)(Math.random()*2);
-                    if(rand == 0) {
-                        enemy.add(new Enemy(tiles));
-                    }
-                    else {
-                        enemy.add(new BlueShroom(tiles));
-                    }
-                    count = 0;
+                for(Projectile p: pro){
+                p.update();
                 }
 
                 for (int e = 0; e < enemy.size(); e++) {
@@ -538,6 +494,7 @@ public class Main extends JPanel{
         g2.drawString("Cost: " + 20, 920, 455);
         g2.drawString("Cost: " + 20, 825, 545);
         g2.drawString("Cost: " + 20, 920, 545);
+        System.out.println();
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
@@ -545,7 +502,6 @@ public class Main extends JPanel{
             } else {
                 play = Color.black;
             }
-
             g2.drawImage(backg,0,0,backg.getWidth(),backg.getHeight(),null);
 
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
@@ -647,7 +603,6 @@ public class Main extends JPanel{
         enemyDead = false;
         size = 50;
         wave = 1;
-        screen = 0;
         makeMap();
         timer.restart();
     }
