@@ -32,6 +32,7 @@ public class Main extends JPanel{
     private int intersectE, intersectP;
     private BananaBomb banana;
     private boolean start;
+    private BufferedImage backg;
 
     private int mousex,mousey;
     private Color play = new Color(0,0,0);
@@ -66,6 +67,7 @@ public class Main extends JPanel{
             pics[4][1] = ImageIO.read(new File("res/Banana Peel.png" ));
             pics[5][0] = ImageIO.read(new File("res/Samus.png" ));
             pics[5][1] = ImageIO.read(new File("res/Pit.png" ));
+            backg = ImageIO.read(new File("res/BackgroundTD.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }// Pic Maker
@@ -543,6 +545,8 @@ public class Main extends JPanel{
             } else {
                 play = Color.black;
             }
+
+            g2.drawImage(backg,0,0,backg.getWidth(),backg.getHeight(),null);
 
             g2.setFont(new Font("Comic Sans MS", Font.BOLD, 60));
             g2.setColor(Color.black);
