@@ -338,7 +338,7 @@ public class Main extends JPanel{
                     }
                 }
                 count2++;
-
+// hi
                 for (int i = 0; i < towers.size(); i++) {
                     if(towers.get(i) instanceof BananaBomb){
                         for (int j = 0; j < enemy.size(); j++) {
