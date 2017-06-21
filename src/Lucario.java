@@ -6,9 +6,10 @@ import java.util.ArrayList;
  */
 public class Lucario extends Tower {
     public Lucario(int x, int y, BufferedImage pic) {
-        super(x, y, pic, 300, 20);
+        super(x, y, pic, 300, 200);
         this.setPic("Lucario.png");
         this.setShootnum(10);
+        this.setRange(150);
     }
     public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> pr){
         Enemy en;

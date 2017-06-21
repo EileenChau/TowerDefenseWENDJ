@@ -12,7 +12,7 @@ public class DonkeyKong extends Tower {
     private int shootNum;
     private int price;
     public DonkeyKong(int x, int y, BufferedImage pic) {
-        super(x, y, pic, 300, 20);
+        super(x, y, pic, 350, 285);
         wat=pic;
         this.setShootnum(10);
         this.setPic("Donkey Kong.png");

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class Yoshi extends Tower {
     public Yoshi(int x, int y, BufferedImage pic) {
-        super(x, y, pic, 300, 20);
+        super(x, y, pic, 300, 150);
         this.setShootnum(10);
         this.setPic("Yoshi.png");
     }

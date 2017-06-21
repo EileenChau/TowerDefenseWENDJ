@@ -7,7 +7,7 @@ public class Fireball extends Projectile {
 
     public Fireball(int x, int y, int dir, Enemy e) {
         super(x, y, dir, 5, e);
-        setSpeed(30);
+        setSpeed(20);
         setPic("Mario Fireball.png", NORTH);
     }
 }

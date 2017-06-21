@@ -7,6 +7,6 @@ public class Bowser extends Enemy{
         super(arr);
         setPic("Bowser.png", NORTH);
         setHealth(100);
-        setSpeed(2);
+        setSpeed(3);
     }
 }

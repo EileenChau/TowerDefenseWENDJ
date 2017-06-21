@@ -6,9 +6,9 @@ import java.util.ArrayList;
  */
 public class Link extends Tower {
     public Link(int x, int y, BufferedImage pic) {
-        super(x, y, pic, 300, 20);
+        super(x, y, pic, 300, 1350);
         this.setPic("Link.png");
-        this.setRange(150);
+        this.setRange(100);
     }
     public void shoot(ArrayList<Enemy> enemies, ArrayList<Projectile> bullets) {
         Enemy en;

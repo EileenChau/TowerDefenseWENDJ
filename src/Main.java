@@ -484,17 +484,16 @@ public class Main extends JPanel{
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
         g2.drawString("Cost: " + 20, 825, 95);
         g2.drawString("Cost: " + 20, 920, 95);
-        g2.drawString("Cost: " + 20, 825, 185);
+        g2.drawString("Cost: " + 150, 825, 185);
         g2.drawString("Cost: " + 20, 920, 185);
-        g2.drawString("Cost: " + 20, 825, 275);
-        g2.drawString("Cost: " + 20, 920, 275);
-        g2.drawString("Cost: " + 20, 825, 365);
+        g2.drawString("Cost: " + 150, 825, 275);
+        g2.drawString("Cost: " + 1350, 910, 275);
+        g2.drawString("Cost: " + 200, 825, 365);
         g2.drawString("Cost: " + 20, 920, 365);
         g2.drawString("Cost: " + 20, 825, 455);
         g2.drawString("Cost: " + 20, 920, 455);
         g2.drawString("Cost: " + 20, 825, 545);
         g2.drawString("Cost: " + 20, 920, 545);
-        System.out.println();
 
         if(screen==0) {
             if (mousex > 335 && mousex < 435 && mousey > 260 && mousey < 315) {
